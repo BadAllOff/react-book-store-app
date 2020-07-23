@@ -2,7 +2,6 @@ import React from "react";
 
 class Signuptobook extends React.Component {
   render() {
-    console.log(this.props);
     const { book } = this.props;
 
     return (

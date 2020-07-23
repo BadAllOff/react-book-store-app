@@ -7,11 +7,7 @@ class Author extends React.Component {
 
     return (
       <div className="card border-dark">
-        <img
-          class="card-img-top"
-          src={author.avatar}
-          alt="Card image cap"
-        ></img>
+        <img class="card-img-top" src={author.avatar} alt={author.name} />
         <div class="card-body">
           <h5 class="card-title">{author.name}</h5>
           <p class="card-text">{author.about}</p>
