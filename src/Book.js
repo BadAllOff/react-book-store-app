@@ -1,5 +1,5 @@
 import React from "react";
-import Author from './Author';
+import AuthorsList from './AuthorList';
 import Signuptobook from './SIgnUpToBook'
 class Book extends React.Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class Book extends React.Component {
 
   render() {
     const {book} = this.props;
-    const authors = book.authors.filter(function(a, index) {if (index < 3){ return a; }});
     const isBestseller = book.subscribers_count > 50 ? true : false;
 
     return (
@@ -62,11 +61,7 @@ class Book extends React.Component {
             <p className="pull-right text-right"> <span className="pull-right text-right">{book.subscribers_count}</span> </p>
           </div>
         </div>
-        {
-          authors.map(author => (
-            <Author key={author.id} author={author} />
-          ))
-        }
+        <AuthorsList authors={book.authors} />
         <Signuptobook book={book} />
       </div>
     );
