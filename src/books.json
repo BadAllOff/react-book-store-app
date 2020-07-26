@@ -58,6 +58,13 @@
         "email": "greatAuthor@autors.com",
         "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
         "about": "an anonymous person"
+      },
+      {
+        "id": 5,
+        "name": "Awesome Anonym Author 2",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
+        "about": "Incredibly talented anonim writer! but he is kind of sociopath as he always wants to bi ni hiderd list... creepy guy... but talented"
       }
     ],
     "min_price": "9.99",
