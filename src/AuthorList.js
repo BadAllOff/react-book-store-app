@@ -12,23 +12,14 @@ class AuthorsList extends React.Component {
     this.setState({ showAllAuthors: !this.state.showAllAuthors });
   }
 
-  render() {
-    const showAllAuthors = this.state.showAllAuthors;
-    const { authors } = this.props;
-    const showBtnText = `Show all ` + authors.length + ` Authors`;
-    const hideBtnText = `Show anly 3 Authors`;
-
-    // возможно не самое элегантное решение но работает. поэтому жду комментариев по улучшению.
-    // например сменить логику отображения - рендерить всё и играться с классами visible\invisible
-    // ну или дождаться следующих уроков где буду соображать получше.
-    const visibleAuthors = authors.filter(function (a, index) {
-      if (showAllAuthors) {
-        return a;
-      } else if (index < 3) {
-        return a;
-      }
-    });
-
+  // в вспомогательных функциях как лучше -
+  // явно указывать в аргуметах какие параметры использует функция showBtn(authors, showAllAuthors)
+  // или же брать эти параметры из состояния внутри функции? this.state.showAllAuthors
+  // понимаю что в таком маленьком компоненте конечно это не имеет значения и возможно тема холиварная
+  // Мне например удобно когда в аргументах указаны все параметы используемые внутри.
+  // Таким образом всё становиться наглядно уже в "заголовке" функции
+  showBtn(authors, showAllAuthors) {
+    console.log(authors.length);
     return (
       <>
         {authors.length > 3 && (
@@ -38,12 +29,35 @@ class AuthorsList extends React.Component {
                 className="btn btn-block btn-primary"
                 onClick={() => this.toggleShowAll()}
               >
-                {showAllAuthors ? hideBtnText : showBtnText}
+                {this.toggleBtnText(authors, showAllAuthors)}
               </button>
             </div>
           </div>
         )}
-        {visibleAuthors.map((author, index) => (
+      </>
+    );
+  }
+
+  toggleBtnText(authors, showAllAuthors) {
+    return (
+      <>
+        {showAllAuthors
+          ? `Show only 3 Authors`
+          : `Show all ${authors.length} Authors`}
+      </>
+    );
+  }
+
+  render() {
+    const showAllAuthors = this.state.showAllAuthors;
+    const { authors } = this.props;
+    const authorsToShow = showAllAuthors ? authors : authors.slice(0, 3);
+
+    // убрал логику из финального рендера, если это имеет значение :)
+    return (
+      <>
+        {this.showBtn(authors, showAllAuthors)}
+        {authorsToShow.map((author, index) => (
           <AuthorCard key={author.id} author={author} className="invisible" />
         ))}
       </>
