@@ -80,16 +80,8 @@
     "page_count": 320,
     "language": "English",
     "progress": 99,
-    "cover_image": "https://www.amazon.com/images/I/51aDh-YMFAL._SX331_BO1,204,203,200_.jpg",
-    "authors": [
-      {
-        "id": 1,
-        "name": " James Clear ",
-        "email": "greatAuthor@autors.com",
-        "avatar": "https://images-na.ssl-images-amazon.com/images/I/81LKZj5X6lL._SY600_.jpg",
-        "about": "is an American academic, lecturer, and author working in the fields of critical discourse analysis and whiteness studies"
-      }
-    ],
+    "cover_image": "https://cdn-lubimyczytac.pl/upload/books/4869000/4869340/831035-352x500.jpg",
+    "authors": [],
     "min_price": "14.99",
     "main_price": "16.70",
     "total_sum": "0.01",

@@ -19,7 +19,6 @@ class AuthorsList extends React.Component {
   // Мне например удобно когда в аргументах указаны все параметы используемые внутри.
   // Таким образом всё становиться наглядно уже в "заголовке" функции
   showBtn(authors, showAllAuthors) {
-    console.log(authors.length);
     return (
       <>
         {authors.length > 3 && (
@@ -49,8 +48,8 @@ class AuthorsList extends React.Component {
   }
 
   render() {
-    const showAllAuthors = this.state.showAllAuthors;
     const { authors } = this.props;
+    const showAllAuthors = this.state.showAllAuthors;
     const authorsToShow = showAllAuthors ? authors : authors.slice(0, 3);
 
     // убрал логику из финального рендера, если это имеет значение :)
