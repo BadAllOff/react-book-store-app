@@ -1,10 +1,6 @@
 import React from "react";
 
 class ShowAuthorsBtn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   toggleBtn() {
     this.props.toggleShowAll();
   }
