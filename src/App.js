@@ -1,6 +1,6 @@
 import React from "react";
 
-import BooksList from "./BooksList";
+import BookList from "./BookList";
 
 class App extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class App extends React.Component {
           </nav>
         </header>
         <main className="container" style={{ marginTop: "30px" }}>
-          <BooksList books={this.props.books} />
+          <BookList books={this.props.books} />
         </main>
         <footer>
           <div className="container">

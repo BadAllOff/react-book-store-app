@@ -15,8 +15,8 @@ class AuthorsList extends React.Component {
   }
 
   render() {
-    const showAllAuthors = this.state.showAllAuthors;
     const { authors } = this.props;
+    const showAllAuthors = this.state.showAllAuthors;
     const authorsToShow = showAllAuthors ? authors : authors.slice(0, 3);
 
     return (
