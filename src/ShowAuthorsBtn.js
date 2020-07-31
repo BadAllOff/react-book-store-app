@@ -1,33 +1,23 @@
 import React from "react";
 
 class ShowAuthorsBtn extends React.Component {
-  toggleBtn() {
-    this.props.toggleShowAll();
-  }
-
   render() {
-    const authors = this.props.authors;
+    const authors_count = this.props.authors_count;
     const showAllAuthors = this.props.showAllAuthors;
 
     return (
-      <>
-        {authors.length > 3 && (
-          <div className="card border-primary">
-            <div className="card-body">
-              <button
-                className="btn btn-block btn-primary"
-                onClick={() => {
-                  this.toggleBtn();
-                }}
-              >
-                {showAllAuthors
-                  ? `Show only 3 Authors`
-                  : `Show all ${authors.length} Authors`}
-              </button>
-            </div>
-          </div>
-        )}
-      </>
+      <div className="card border-primary">
+        <div className="card-body">
+          <button
+            className="btn btn-block btn-primary"
+            onClick={this.props.toggleShowAll}
+          >
+            {showAllAuthors
+              ? `Show only 3 Authors`
+              : `Show all ${authors_count} Authors`}
+          </button>
+        </div>
+      </div>
     );
   }
 }

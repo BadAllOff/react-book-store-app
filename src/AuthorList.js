@@ -21,11 +21,13 @@ class AuthorsList extends React.Component {
 
     return (
       <>
-        <ShowAuthorsBtn
-          authors={authors}
-          showAllAuthors={showAllAuthors}
-          toggleShowAll={this.toggleShowAll}
-        />
+        {authors.length > 3 && (
+          <ShowAuthorsBtn
+            authors_count={authors.length}
+            showAllAuthors={showAllAuthors}
+            toggleShowAll={this.toggleShowAll}
+          />
+        )}
         {authorsToShow.map((author) => (
           <AuthorCard key={author.id} author={author} />
         ))}
