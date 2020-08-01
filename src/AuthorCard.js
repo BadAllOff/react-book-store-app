@@ -1,4 +1,5 @@
 import React from "react";
+import ContactFormModal from "./ContactFormModal";
 
 class AuthorCard extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class AuthorCard extends React.Component {
           <p className="card-text">
             <small className="text-muted">{author.email}</small>
           </p>
+          <ContactFormModal author={author}/>
         </div>
       </div>
     );

@@ -22,7 +22,7 @@ class App extends React.Component {
         </main>
         <footer>
           <div className="container">
-            &copy; {new Date().getFullYear()}, Amazon Books
+            <p>&copy; {new Date().getFullYear()}, Amazon Books</p>
           </div>
         </footer>
       </>
