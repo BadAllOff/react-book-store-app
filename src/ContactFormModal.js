@@ -81,7 +81,7 @@ class ContactFormModal extends React.Component {
                         <label>Your message</label>
                         <textarea
                           name="message"
-                          class="form-control"
+                          className="form-control"
                           rows="3"
                           value={this.state.message}
                           onChange={(e) => this.handleChange("message", e)}
