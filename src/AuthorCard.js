@@ -1,6 +1,6 @@
 import React from "react";
 
-class Author extends React.Component {
+class AuthorCard extends React.Component {
   render() {
     const { author } = this.props;
 
@@ -19,4 +19,4 @@ class Author extends React.Component {
   }
 }
 
-export default Author;
+export default AuthorCard;

@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-import Book from "./Book";
+import BookCard from "./BookCard";
 
 const author = {
   name: "Mr. Great Author",
@@ -29,7 +29,7 @@ const book = {
 };
 
 test("should render book on page", () => {
-  const { getByText } = render(<Book book={book} />);
+  const { getByText } = render(<BookCard book={book} />);
   expect(getByText("Best book title")).toBeInTheDocument();
   expect(getByText("$1000000")).toBeInTheDocument();
   expect(getByText("$99,99")).toBeInTheDocument();
