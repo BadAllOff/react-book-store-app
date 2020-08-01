@@ -36,7 +36,7 @@ class ContactFormModal extends React.Component {
 
     return (
       <>
-        <button type="button" class="btn btn-primary" onClick={() => this.toggle()}>
+        <button type="button" className="btn btn-primary" onClick={() => this.toggle()}>
           Write to author
         </button>
         {this.state.isOpen &&
