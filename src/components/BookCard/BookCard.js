@@ -1,6 +1,6 @@
 import React from "react";
-import AuthorsList from "./AuthorList";
-import Signuptobook from "./SIgnUpToBook";
+import AuthorsList from "../AuthorCard/AuthorList";
+import SignUpToBook from "./SignUpToBook";
 class BookCard extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +34,7 @@ class BookCard extends React.Component {
             <p className="pull-right text-right"> {book.description}</p>
             <hr />
             <p className="card-text text-primary">Authors</p>
+            {console.log(book.authors.length)}
             {book.authors.length === 0 && (
               <p className="pull-right text-right">No author</p>
             )}
@@ -70,7 +71,7 @@ class BookCard extends React.Component {
         </div>
         {/* логично же не тратить ресурсы на этот блок если авторов нет и читатель уже был уведомлён выше */}
         {book.authors.length != 0 && <AuthorsList authors={book.authors} />}
-        <Signuptobook book={book} />
+        <SignUpToBook book={book} />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-import Author from "./Author";
+import Author from "../components/AuthorCard/AuthorCard.js";
 
 const author = {
   name: "Mr. Great Author",

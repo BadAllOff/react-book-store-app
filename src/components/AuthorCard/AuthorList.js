@@ -1,6 +1,6 @@
 import React from "react";
 import AuthorCard from "./AuthorCard";
-import ShowAuthorsBtn from "./ShowAuthorsBtn";
+import ShowAuthorsBtn from "../BookCard/ShowAuthorsBtn";
 
 class AuthorsList extends React.Component {
   constructor(props) {

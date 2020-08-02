@@ -1,5 +1,5 @@
 import React from "react";
-import AuthContext from "./AuthContext";
+import AuthContext from "../meta/AuthContext";
 
 const UserInfo = () => (
   <AuthContext.Consumer>

@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "./BookList";
+import BookList from "../BookCard/BookList";
 import UserInfo from "./UserInfo";
 
 class App extends React.Component {
