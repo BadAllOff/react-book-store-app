@@ -34,7 +34,6 @@ class BookCard extends React.Component {
             <p className="pull-right text-right"> {book.description}</p>
             <hr />
             <p className="card-text text-primary">Authors</p>
-            {console.log(book.authors.length)}
             {book.authors.length === 0 && (
               <p className="pull-right text-right">No author</p>
             )}

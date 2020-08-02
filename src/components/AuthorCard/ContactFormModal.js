@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Field from "../helpers/Field";
+
 class ContactFormModal extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class ContactFormModal extends React.Component {
       message: this.state.message,
     });
     event.preventDefault();
-    this.toggle()
+    this.toggle();
   }
 
   render() {
@@ -36,7 +38,11 @@ class ContactFormModal extends React.Component {
 
     return (
       <>
-        <button type="button" className="btn btn-primary" onClick={() => this.toggle()}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => this.toggle()}
+        >
           Write to author
         </button>
         {this.state.isOpen &&
@@ -57,24 +63,22 @@ class ContactFormModal extends React.Component {
                   <div className="modal-body">
                     <form onSubmit={this.handleSubmit}>
                       <div className="form-group">
-                        <label>Email address</label>
-                        <input
-                          type="email"
-                          className="form-control"
+                        <Field
+                          name="email"
+                          label="Email address"
                           value={this.state.email}
-                          onChange={(e) => this.handleChange("email", e)}
+                          type="email"
+                          handleChange={(name, e) => this.handleChange(name, e)}
+                          hint="We'll never share your email with anyone else."
                         />
-                        <small className="form-text text-muted">
-                          We'll never share your email with anyone else.
-                        </small>
                       </div>
                       <div className="form-group">
-                        <label>Your Name</label>
-                        <input
-                          type="name"
-                          className="form-control"
+                        <Field
+                          name="name"
+                          label="Your Name"
                           value={this.state.name}
-                          onChange={(e) => this.handleChange("name", e)}
+                          type="input"
+                          handleChange={(name, e) => this.handleChange(name, e)}
                         />
                       </div>
                       <div className="form-group">
