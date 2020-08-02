@@ -62,35 +62,32 @@ class ContactFormModal extends React.Component {
                   </div>
                   <div className="modal-body">
                     <form onSubmit={this.handleSubmit}>
-                      <div className="form-group">
-                        <Field
-                          name="email"
-                          label="Email address"
-                          value={this.state.email}
-                          type="email"
-                          handleChange={(name, e) => this.handleChange(name, e)}
-                          hint="We'll never share your email with anyone else."
-                        />
-                      </div>
-                      <div className="form-group">
-                        <Field
-                          name="name"
-                          label="Your Name"
-                          value={this.state.name}
-                          type="input"
-                          handleChange={(name, e) => this.handleChange(name, e)}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Your message</label>
-                        <textarea
-                          name="message"
-                          className="form-control"
-                          rows="3"
-                          value={this.state.message}
-                          onChange={(e) => this.handleChange("message", e)}
-                        ></textarea>
-                      </div>
+                      <Field
+                        name="email"
+                        label="Email address"
+                        value={this.state.email}
+                        type="email"
+                        inputType="input"
+                        handleChange={(name, e) => this.handleChange(name, e)}
+                        hint="We'll never share your email with anyone else."
+                      />
+                      <Field
+                        name="name"
+                        label="Your Name"
+                        value={this.state.name}
+                        type="input"
+                        inputType="input"
+                        handleChange={(name, e) => this.handleChange(name, e)}
+                      />
+                      <Field
+                        name="message"
+                        label="Your message"
+                        value={this.state.message}
+                        type="textarea"
+                        inputType="textarea"
+                        handleChange={(name, e) => this.handleChange(name, e)}
+                        options={{ rows: "3", cols: "40" }}
+                      />
                       <button type="submit" className="btn btn-primary">
                         Send message
                       </button>
