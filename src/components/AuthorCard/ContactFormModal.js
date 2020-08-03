@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import ModalContainer from "../ModalContainer/ModalContainer";
 import Field from "../helpers/Field";
 
 class ContactFormModal extends React.Component {
@@ -16,7 +17,9 @@ class ContactFormModal extends React.Component {
   }
 
   toggle() {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState((prevState) => ({
+      isOpen: !prevState.isOpen,
+    }));
   }
 
   handleChange(fieldName, e) {
@@ -47,83 +50,47 @@ class ContactFormModal extends React.Component {
         </button>
         {this.state.isOpen &&
           ReactDOM.createPortal(
-            <div style={styles.overlay}>
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title">Write to {author.name}</h5>
-                    <button
-                      type="button"
-                      onClick={() => this.toggle()}
-                      className="close"
-                    >
-                      <span>&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    <form onSubmit={this.handleSubmit}>
-                      <Field
-                        name="email"
-                        label="Email address"
-                        value={this.state.email}
-                        type="email"
-                        inputType="input"
-                        handleChange={(name, e) => this.handleChange(name, e)}
-                        hint="We'll never share your email with anyone else."
-                      />
-                      <Field
-                        name="name"
-                        label="Your Name"
-                        value={this.state.name}
-                        type="input"
-                        inputType="input"
-                        handleChange={(name, e) => this.handleChange(name, e)}
-                      />
-                      <Field
-                        name="message"
-                        label="Your message"
-                        value={this.state.message}
-                        type="textarea"
-                        inputType="textarea"
-                        handleChange={(name, e) => this.handleChange(name, e)}
-                        options={{ rows: "3", cols: "40" }}
-                      />
-                      <button type="submit" className="btn btn-primary">
-                        Send message
-                      </button>
-                    </form>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      onClick={() => this.toggle()}
-                      className="btn btn-secondary"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>,
+            <ModalContainer
+              modalTitle={`Write to ${author.name}`}
+              closeModal={() => this.toggle()}
+            >
+              <form onSubmit={this.handleSubmit}>
+                <Field
+                  name="email"
+                  label="Email address"
+                  value={this.state.email}
+                  type="email"
+                  inputType="input"
+                  handleChange={(name, e) => this.handleChange(name, e)}
+                  hint="We'll never share your email with anyone else."
+                />
+                <Field
+                  name="name"
+                  label="Your Name"
+                  value={this.state.name}
+                  type="input"
+                  inputType="input"
+                  handleChange={(name, e) => this.handleChange(name, e)}
+                />
+                <Field
+                  name="message"
+                  label="Your message"
+                  value={this.state.message}
+                  type="textarea"
+                  inputType="textarea"
+                  handleChange={(name, e) => this.handleChange(name, e)}
+                  options={{ rows: "3", cols: "40" }}
+                />
+                <button type="submit" className="btn btn-primary">
+                  Send message
+                </button>
+              </form>
+            </ModalContainer>,
             document.getElementById("modal-root")
           )}
       </>
     );
   }
 }
-
-const styles = {
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.95)",
-    position: "fixed",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-};
 
 export default ContactFormModal;
