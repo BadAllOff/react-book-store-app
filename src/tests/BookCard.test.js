@@ -2,9 +2,10 @@ import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-import BookCard from "./BookCard";
+import BookCard from "../components/BookCard/BookCard";
 
 const author = {
+  id: 1,
   name: "Mr. Great Author",
   email: "greatAuthor@autors.com",
   avatar:
@@ -21,7 +22,7 @@ const book = {
   progress: 20,
   cover_image:
     "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png",
-  author: author,
+  authors: [author],
   min_price: "99,99",
   main_price: "1000000",
   total_sum: "0.01",

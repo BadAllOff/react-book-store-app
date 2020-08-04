@@ -2,7 +2,7 @@ import React from "react";
 
 import SubscriptionsTermsModal from "./SubscriptionsTermsModal"
 
-class Signuptobook extends React.Component {
+class SignUpToBook extends React.Component {
   render() {
     const { book } = this.props;
 
@@ -35,4 +35,4 @@ class Signuptobook extends React.Component {
   }
 }
 
-export default Signuptobook;
+export default SignUpToBook;
