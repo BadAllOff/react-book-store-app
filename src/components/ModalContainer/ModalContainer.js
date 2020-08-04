@@ -1,6 +1,10 @@
 import React from "react";
 
-const ModalContainer = ({ modalTitle, closeModal, children }) => {
+const ModalContainer = ({
+  modalTitle = `Click 'x' to close this window`,
+  closeModal,
+  children,
+}) => {
   return (
     <div style={styles.overlay}>
       <div className="modal-dialog">
@@ -32,10 +36,6 @@ const ModalContainer = ({ modalTitle, closeModal, children }) => {
 };
 
 export default ModalContainer;
-
-ModalContainer.defaultProps = {
-  modalTitle: `Click 'x' to close this window`,
-};
 
 const styles = {
   overlay: {

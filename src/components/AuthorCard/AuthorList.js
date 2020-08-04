@@ -1,6 +1,6 @@
 import React from "react";
 import AuthorCard from "./AuthorCard";
-import ShowAuthorsBtn from "../BookCard/ShowAuthorsBtn";
+import ShowAuthorsBtn from "./ShowAuthorsBtn";
 
 class AuthorsList extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class AuthorsList extends React.Component {
   }
 
   toggleShowAll() {
-    this.setState({ showAllAuthors: !this.state.showAllAuthors });
+    this.setState(({showAllAuthors}) => ({ showAllAuthors: !showAllAuthors }));
   }
 
   render() {
