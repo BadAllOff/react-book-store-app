@@ -4,9 +4,6 @@ import SignUpToBook from "./SignUpToBook";
 import Row from "./Row";
 
 class BookCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { book } = this.props;
