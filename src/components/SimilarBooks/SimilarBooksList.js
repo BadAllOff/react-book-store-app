@@ -17,7 +17,6 @@ class SimilarBooksList extends React.Component {
       // Возможно виноват ретёрн, но без него пуш не вернет новый результат
       notInterested: return notInterested.push(id);
     });
-    console.log(this.state.notInterested);
   }
 
   render() {
