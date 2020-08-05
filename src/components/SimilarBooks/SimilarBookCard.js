@@ -1,30 +1,31 @@
 import React from "react";
 
-class SimilarBookCard extends React.Component {
-  render() {
-    return (
-      <div className="card mb-3" style={{ maxWidth: "20rem" }}>
-        <div className="row no-gutters">
-          <div className="col-md-4">
-            <img src="..." className="card-img" alt="..." />
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">Title</h5>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </p>
-            </div>
-          </div>
+const SimilarBookCard = ({ book, removeBookById }) => {
+  return (
+    <div className="col mb-4">
+      <div className="card h-100">
+        <button
+          type="button"
+          onClick={() => removeBookById(book.id)}
+          className="btn btn-light"
+        >
+          <span>Not interested</span>
+        </button>
+        <img className="card-img-top" alt={book.title} src={book.cover_image} />
+
+        <div className="card-body">
+          <h6 className="card-title">{book.title}</h6>
         </div>
+        {book.authors.length > 0 ?
+          <div className="card-footer">
+            <small className="text-muted">
+              {book.authors.map((author) => author.name).join(", ")}
+            </small>
+          </div>
+        : null }
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default SimilarBookCard;
