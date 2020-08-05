@@ -11,6 +11,10 @@ class SimilarBooksList extends React.Component {
 
   removeBookById(id) {
     this.setState(({ notInterested }) => {
+      // Всё работвет но опять эта ошибка от Реакт Дев тула
+      // Uncaught SyntaxError: JSON.parse: unexpected end of data at line 1 column 1 of the JSON data
+      // Она вылазит из-за этой строки ниже но не могу понять в чём дело
+      // Возможно виноват ретёрн, но без него пуш не вернет новый результат
       notInterested: return notInterested.push(id);
     });
   }
@@ -26,13 +30,13 @@ class SimilarBooksList extends React.Component {
       <div>
         <h2>Similar books</h2>
         <div className="row row-cols-1 row-cols-md-3">
-          {result.map((b) => {
+          {result.map((book) => {
             return (
               <SimilarBookCard
-                key={b.id}
-                book={b}
+                key={book.id}
+                book={book}
                 removeBookById={() => {
-                  this.removeBookById(b.id);
+                  this.removeBookById(book.id);
                 }}
               />
             );
