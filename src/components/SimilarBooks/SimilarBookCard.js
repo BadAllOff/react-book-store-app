@@ -19,7 +19,7 @@ const SimilarBookCard = ({ book, removeBookById }) => {
         {book.authors.length > 0 ?
           <div className="card-footer">
             <small className="text-muted">
-              {book.authors.map((author) => author.name).join(", ")}
+              {book.authors.map((author) => {author.name}).join(", ")}
             </small>
           </div>
         : null }
