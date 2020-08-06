@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "title": "Too Much and Never Enough: How My Family Created the World’s Most Dangerous Man",
+    "cover_image": "https://www.amazon.com/images/I/51k-FOUzX5L._SX329_BO1,204,203,200_.jpg",
+    "authors": [
+      {
+        "id": 1,
+        "name": "Mary L. Trump",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://pbs.twimg.com/profile_images/3037615597/d4fd27be95cc3f4cbe6da12a333e8a5f_400x400.jpeg",
+        "about": "is an American psychologist, businessperson, and author. She is a niece of President Donald J. Trump. Her 2020 book about him and the family, Too Much and Never Enough, sold nearly one million copies on the day of release."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "White Fragility: Why It's So Hard for White People to Talk About Racism",
+    "cover_image": "https://www.amazon.com/images/I/51aDh-YMFAL._SX331_BO1,204,203,200_.jpg",
+    "authors": [
+      {
+        "id": 1,
+        "name": "Robin DiAngelo",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://www.sbs.com.au/topics/sites/sbs.com.au.topics/files/styles/full/public/robinda.jpg?itok=rCK2PqQC&mtime=1544479199",
+        "about": "is an American academic, lecturer, and author working in the fields of critical discourse analysis and whiteness studies"
+      },
+      {
+        "id": 2,
+        "name": "Michael Eric Dyson",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Michael_Eric_Dyson_at_Martin_Luther_King%2C_Jr._Memorial_4_April_2012_crop.jpg/478px-Michael_Eric_Dyson_at_Martin_Luther_King%2C_Jr._Memorial_4_April_2012_crop.jpg",
+        "about": " is an academic, author, preacher, and radio host. He is Professor of Sociology at Georgetown University."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    "cover_image": "https://cdn-lubimyczytac.pl/upload/books/4869000/4869340/831035-352x500.jpg",
+    "authors": []
+  },
+  {
+    "id": 4,
+    "title": "Brown Bear, Brown Bear, What Do You See? ",
+    "description": "A big happy frog, a plump purple cat, a handsome blue horse, and a soft yellow duck--all parade across the pages of this delightful book. Children will immediately respond to Eric Carle's flat, boldly colored collages.",
+    "cover_image": "https://images-na.ssl-images-amazon.com/images/I/51430n+9jlL._SX355_BO1,204,203,200_.jpg",
+    "authors": [
+      {
+        "id": 1,
+        "name": "Anonym Author 2",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
+        "about": "an anonymous person"
+      },
+      {
+        "id": 2,
+        "name": "Awesome Anonym Author 2",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
+        "about": "Incredibly talented anonim writer! but he is kind of sociopath as he always wants to bi ni hiderd list... creepy guy... but talented"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Chicka Chicka Boom Boom (Board Book)",
+    "description": "The complete edition of the bestselling children’s favorite, Chicka Chicka Boom Boom, is now available as a Classic Board Book!",
+    "cover_image": "https://images-na.ssl-images-amazon.com/images/I/51wfzW0QnXL._SX381_BO1,204,203,200_.jpg",
+    "authors": [
+      {
+        "id": 1,
+        "name": "Bill Martin Jr.",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
+        "about": "an anonymous person"
+      },
+      {
+        "id": 2,
+        "name": "Lois Ehlert",
+        "email": "greatAuthor@autors.com",
+        "avatar": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/42498a22728563.560469f893794.png",
+        "about": "Incredibly talented anonim writer! but he is kind of sociopath as he always wants to bi ni hiderd list... creepy guy... but talented"
+      }
+    ]
+  }
+]

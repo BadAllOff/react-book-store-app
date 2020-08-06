@@ -9,8 +9,8 @@ class SubscriptionsTermsModal extends React.Component {
   }
 
   toggle() {
-    this.setState((prevState) => ({
-      isOpen: !prevState.isOpen,
+    this.setState(({isOpen}) => ({
+      isOpen: !isOpen,
     }));
   }
 

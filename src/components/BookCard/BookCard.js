@@ -4,18 +4,12 @@ import SignUpToBook from "./SignUpToBook";
 import Row from "./Row";
 
 class BookCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { book } = this.props;
     const isBestseller = book.subscribers_count > 50 ? true : false;
-    const authorNames =
-      book.authors.length > 1
-        ? book.authors.map((author) => author.name).join(", ")
-        : book.authors.map((author) => author.name);
-
+    const authorNames = book.authors.map((author) => author.name).join(", ");
+    
     return (
       <div className="card-columns">
         <div className="card border-dark">
