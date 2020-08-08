@@ -1,7 +1,7 @@
 import React from "react";
-import BookList from "../BookCard/BookList";
 import UserInfo from "./UserInfo";
 import SimilarBooksList from "../SimilarBooks/SimilarBooksList";
+import BookContainer from "../BookContainer";
 
 class App extends React.Component {
   render() {
@@ -22,10 +22,8 @@ class App extends React.Component {
           </nav>
         </header>
         <main className="container" style={{ marginTop: "30px" }}>
-          <div>
-            <SimilarBooksList similarBooks={this.props.similarBooks} />
-          </div>
-          <BookList books={this.props.books} />
+          {/* <SimilarBooksList similarBooks={this.props.similarBooks} /> */}
+          <BookContainer books={this.props.books} />
         </main>
         <footer>
           <div className="container">

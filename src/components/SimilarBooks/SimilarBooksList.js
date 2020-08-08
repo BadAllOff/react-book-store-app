@@ -24,22 +24,24 @@ class SimilarBooksList extends React.Component {
 
     return (
       <>
-      {result.length != 0 ? <div>
-        <h2>Similar books</h2>
-        <div className="row row-cols-1 row-cols-md-3">
-          {result.map((book) => {
-            return (
-              <SimilarBookCard
-                key={book.id}
-                book={book}
-                removeBookById={() => {
-                  this.removeBookById(book.id);
-                }}
-              />
-            );
-          })}
-        </div>
-      </div>: null}
+        {result.length != 0 ? (
+          <div>
+            <h2>Similar books</h2>
+            <div className="row row-cols-1 row-cols-md-3">
+              {result.map((book) => {
+                return (
+                  <SimilarBookCard
+                    key={book.id}
+                    book={book}
+                    removeBookById={() => {
+                      this.removeBookById(book.id);
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
       </>
     );
   }
