@@ -11,6 +11,7 @@ class AuthorCommission extends React.Component {
 
   componentDidMount() {
     this.calculateAuthorRevenue(this.state.user_offer);
+    this.userOfferInput.focus(); 
   }
 
   handleChange(fieldName, e) {
@@ -55,6 +56,7 @@ class AuthorCommission extends React.Component {
               type="number"
               min={book.min_price}
               onChange={(e) => this.calculateAuthorRevenue(e.target.value)}
+              ref={(input) => { this.userOfferInput = input; }}
             />
             <small className="form-text text-muted">
               Minimum ${book.min_price}
