@@ -53,7 +53,7 @@ class BookContainer extends React.Component {
       });
   }
 
-  _mapFromAirtable({records}) {
+  _mapFromAirtable({ records }) {
     return records.map((record) => ({
       id: record.fields.id,
       title: record.fields.title,
