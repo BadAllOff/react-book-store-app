@@ -30,7 +30,6 @@ class BookContainer extends React.Component {
 
     return books ? (
       <div>
-        <h4>book container</h4>
         <BookList books={books} />
       </div>
     ) : (
