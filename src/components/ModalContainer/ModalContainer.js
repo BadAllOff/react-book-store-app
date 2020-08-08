@@ -7,7 +7,7 @@ const ModalContainer = ({
 }) => {
   return (
     <div style={styles.overlay}>
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{modalTitle}</h5>

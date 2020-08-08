@@ -2,7 +2,7 @@ import React from "react";
 import AuthorsList from "../AuthorCard/AuthorList";
 import SignUpToBook from "./SignUpToBook";
 import Row from "./Row";
-import AuthorCommission from "./AuthorCommission";
+import BookDetailsModal from "./BookDetailsModal";
 
 class BookCard extends React.Component {
   render() {
@@ -34,16 +34,13 @@ class BookCard extends React.Component {
             </h5>
             <Row label="Description">{book.description}</Row>
             <Row label="Author">
-              {book.author_listlength === 0 ? "No author" : authorNames}
+              {book.author_list.length === 0 ? "No author" : authorNames}
             </Row>
             <Row label="Pages count"> {book.page_count} pages</Row>
             <Row label="Language">{book.language}</Row>
             <Row label="Progress">{book.progress}%</Row>
             <Row label="Main price">${book.main_price}</Row>
-            <Row label="Minimum price" delimeter={false}>
-              ${book.min_price}
-            </Row>
-            <AuthorCommission book={book} />
+            <Row label="Minimum price">${book.min_price}</Row>
             <Row label="Total sum">${book.total_sum}</Row>
             <Row label="Expected revenue"> ${book.expected_sum}</Row>
             <Row label="Subscribers" delimeter={false}>
@@ -55,6 +52,7 @@ class BookCard extends React.Component {
           <AuthorsList authors={book.author_list} />
         )}
         <SignUpToBook book={book} />
+        <BookDetailsModal book={book} />
       </div>
     );
   }

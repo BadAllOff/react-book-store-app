@@ -75,7 +75,6 @@ class AuthorCommission extends React.Component {
             />
           </span>
         </span>
-        <hr />
       </>
     );
   }
