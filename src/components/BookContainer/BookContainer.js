@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "./BookCard/BookList";
+import BookList from "../BookCard/BookList";
 import axios from "axios";
 
 const API_TOKEN = "key9ncgesGi9whRNC";
