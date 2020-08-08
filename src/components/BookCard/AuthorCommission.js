@@ -58,7 +58,7 @@ class AuthorCommission extends React.Component {
             <input
               step="0.01"
               value={user_offer}
-              className="form-control"
+              className="form-control slider"
               name="user_offer"
               type="range"
               min={book.min_price}
@@ -80,7 +80,7 @@ class AuthorCommission extends React.Component {
             <input
               step="0.01"
               value={authors_revenue}
-              className="form-control"
+              className="form-control slider"
               name="user_offer"
               type="range"
               onChange={(e) => this.calculateUserOffer(e.target.value)}

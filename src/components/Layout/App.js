@@ -2,6 +2,7 @@ import React from "react";
 import UserInfo from "./UserInfo";
 import SimilarBooksList from "../SimilarBooks/SimilarBooksList";
 import BookContainer from "../BookContainer/BookContainer";
+import '../../styles/styles.css';
 
 class App extends React.Component {
   render() {
