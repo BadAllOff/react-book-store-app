@@ -8,7 +8,7 @@ class BookCard extends React.Component {
   render() {
     const { book } = this.props;
     const isBestseller = book.subscribers_count > 50 ? true : false;
-    const authorNames = book.authors.map((author) => author.name).join(", ");
+    const authorNames = book.author_list.map((author) => author.name).join(", ");
     
     return (
       <div className="card-columns">
@@ -32,7 +32,7 @@ class BookCard extends React.Component {
             </h5>
             <Row label="Description">{book.description}</Row>
             <Row label="Author">
-              {book.authors.length === 0 ? "No author" : authorNames}
+              {book.author_listlength === 0 ? "No author" : authorNames}
             </Row>
             <Row label="Pages count"> {book.page_count} pages</Row>
             <Row label="Language">{book.language}</Row>
@@ -46,7 +46,7 @@ class BookCard extends React.Component {
             </Row>
           </div>
         </div>
-        {book.authors.length != 0 && <AuthorsList authors={book.authors} />}
+        {book.author_listlength != 0 && <AuthorsList authors={book.author_list} />}
         <SignUpToBook book={book} />
       </div>
     );
