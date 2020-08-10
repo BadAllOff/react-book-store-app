@@ -2,6 +2,7 @@ import React from "react";
 import UserInfo from "./UserInfo";
 import SimilarBooksList from "../SimilarBooks/SimilarBooksList";
 import BookContainer from "../BookContainer/BookContainer";
+import ScrollButton from "../helpers/ScrollButton";
 import '../../styles/styles.css';
 
 class App extends React.Component {
@@ -25,6 +26,7 @@ class App extends React.Component {
         <main className="container" style={{ marginTop: "30px" }}>
           <SimilarBooksList similarBooks={this.props.similarBooks} />
           <BookContainer books={this.props.books} />
+          <ScrollButton/>
         </main>
         <footer>
           <div className="container">
