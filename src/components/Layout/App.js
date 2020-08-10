@@ -26,7 +26,7 @@ class App extends React.Component {
         <main className="container" style={{ marginTop: "30px" }}>
           <SimilarBooksList similarBooks={this.props.similarBooks} />
           <BookContainer books={this.props.books} />
-          <ScrollButton/>
+          <ScrollButton scrollStepInPx="50" delayInMs="16.66" ShowAtPosition={window.innerHeight/3} TransitionClassName="visible"/>
         </main>
         <footer>
           <div className="container">
