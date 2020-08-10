@@ -83,6 +83,8 @@ class AuthorCommission extends React.Component {
               className="form-control slider"
               name="user_offer"
               type="range"
+              min={book.min_price}
+              max={book.main_price + 100}
               onChange={(e) => this.calculateUserOffer(e.target.value)}
             />
             <small className="form-text text-muted">${authors_revenue}</small>
