@@ -2,7 +2,7 @@ import React from "react";
 import AuthorCard from "./AuthorCard";
 import ShowAuthorsBtn from "./ShowAuthorsBtn";
 
-class AuthorsList extends React.Component {
+class AuthorsContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -36,4 +36,4 @@ class AuthorsList extends React.Component {
   }
 }
 
-export default AuthorsList;
+export default AuthorsContainer;
