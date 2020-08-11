@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "../BookCard/BookList";
+import BookList from "../Book/List/BookList";
 import axios from "axios";
 
 const API_TOKEN = "key9ncgesGi9whRNC";
@@ -12,7 +12,7 @@ const httpClient = axios.create({
   },
 });
 
-class BookContainer extends React.Component {
+class BooksContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -92,4 +92,4 @@ class BookContainer extends React.Component {
   }
 }
 
-export default BookContainer;
+export default BooksContainer;
