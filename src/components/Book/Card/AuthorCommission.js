@@ -18,45 +18,32 @@ class AuthorCommission extends React.Component {
     this.setState({ [fieldName]: e.target.value });
   }
 
-  // calculateAuthorRevenue(value) {
-  //   let minPrice = this.props.book.min_price;
-  //   let authorsRevenue = ((value / 100) * 90).toFixed(2);
-  //   let userOffer = Math.max(minPrice, value);
-
-  //   if (userOffer >= min_price) {
-  //     this.setState({
-  //       userOffer: userOffer,
-  //       authorsRevenue: authorsRevenue,
-  //     });
-  //   }
-  // }
-
   calculate(sourcePrice, direction) {
-    const minPrice = this.props.book.minPrice;
-    const price = Math.max(minPrice, sourcePrice);
-
     const power = direction === "to" ? 1 : -1;
+    const minPrice = this.props.book.minPrice;
     const comission = 0.1;
-    const convertedPrice = (price * (1 - comission) * power).toFixed(2);
 
-    this.setState({
+    let price;
+    let convertedPrice;
+
+    if (direction === "to") {
+      price = Math.max(minPrice, sourcePrice);
+
+      convertedPrice = (price * (1 - comission) * power).toFixed(2);
+    } else {
+      // вычисления полной суммы которую должен заплатить юзер если
+      // хочет что бы автор получил конкретную сумму указанную на слайдере автора.
+      // Из известных из слайдера 90% суммы узнаём сколько будет 100% цена.
+      price = ((sourcePrice / 90) * 100).toFixed(2);
+
+      convertedPrice = sourcePrice;
+    }
+
+    this.setState(({ userOffer, authorsRevenue }) => ({
       userOffer: price,
       authorsRevenue: Math.abs(convertedPrice),
-    });
+    }));
   }
-
-  // calculateUserOffer(value) {
-  //   let minPrice = this.props.book.min_price;
-  //   let userOffer = ((value / 90) * 100).toFixed(2);
-  //   let userOffer = Math.max(minPrice, value);
-
-  //   if (userOffer >= min_price) {
-  //     this.setState({
-  //       userOffer: userOffer,
-  //       authorsRevenue: value,
-  //     });
-  //   }
-  // }
 
   render() {
     const { book } = this.props;
@@ -76,7 +63,9 @@ class AuthorCommission extends React.Component {
               type="range"
               min={book.minPrice}
               max={book.mainPrice + 100}
-              onChange={(e) => this.calculate(e.target.value, "to")}
+              onChange={(e) => {
+                this.calculate(e.target.value, "to");
+              }}
               ref={(input) => {
                 this.userOfferInput = input;
               }}
@@ -98,7 +87,10 @@ class AuthorCommission extends React.Component {
               type="range"
               min={book.minPrice}
               max={book.mainPrice + 100}
-              onChange={(e) => this.calculate(e.target.value)}
+              onChange={(e) => {
+                console.log("triggered");
+                this.calculate(e.target.value);
+              }}
             />
             <small className="form-text text-muted">${authorsRevenue}</small>
           </span>
