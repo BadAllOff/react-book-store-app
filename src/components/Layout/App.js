@@ -1,9 +1,7 @@
 import React from "react";
+import BookList from "../BookCard/BookList";
 import UserInfo from "./UserInfo";
 import SimilarBooksList from "../SimilarBooks/SimilarBooksList";
-import BookContainer from "../BookContainer/BookContainer";
-import ScrollButton from "../helpers/ScrollButton";
-import '../../styles/styles.css';
 
 class App extends React.Component {
   render() {
@@ -24,9 +22,10 @@ class App extends React.Component {
           </nav>
         </header>
         <main className="container" style={{ marginTop: "30px" }}>
-          <SimilarBooksList similarBooks={this.props.similarBooks} />
-          <BookContainer books={this.props.books} />
-          <ScrollButton scrollStepInPx="50" delayInMs="16.66" ShowAtPosition={window.innerHeight/3} TransitionClassName="visible"/>
+          <div>
+            <SimilarBooksList similarBooks={this.props.similarBooks} />
+          </div>
+          <BookList books={this.props.books} />
         </main>
         <footer>
           <div className="container">
