@@ -2,14 +2,16 @@ import React from "react";
 import AuthorsList from "../AuthorCard/AuthorList";
 import SignUpToBook from "./SignUpToBook";
 import Row from "./Row";
+import BookDetailsModal from "./BookDetailsModal";
 
 class BookCard extends React.Component {
-
   render() {
     const { book } = this.props;
     const isBestseller = book.subscribers_count > 50 ? true : false;
-    const authorNames = book.authors.map((author) => author.name).join(", ");
-    
+    const authorNames = book.author_list
+      .map((author) => author.name)
+      .join(", ");
+
     return (
       <div className="card-columns">
         <div className="card border-dark">
@@ -32,13 +34,13 @@ class BookCard extends React.Component {
             </h5>
             <Row label="Description">{book.description}</Row>
             <Row label="Author">
-              {book.authors.length === 0 ? "No author" : authorNames}
+              {book.author_list.length === 0 ? "No author" : authorNames}
             </Row>
             <Row label="Pages count"> {book.page_count} pages</Row>
             <Row label="Language">{book.language}</Row>
             <Row label="Progress">{book.progress}%</Row>
-            <Row label="Minimum price">${book.min_price}</Row>
             <Row label="Main price">${book.main_price}</Row>
+            <Row label="Minimum price">${book.min_price}</Row>
             <Row label="Total sum">${book.total_sum}</Row>
             <Row label="Expected revenue"> ${book.expected_sum}</Row>
             <Row label="Subscribers" delimeter={false}>
@@ -46,8 +48,11 @@ class BookCard extends React.Component {
             </Row>
           </div>
         </div>
-        {book.authors.length != 0 && <AuthorsList authors={book.authors} />}
+        {book.author_listlength != 0 && (
+          <AuthorsList authors={book.author_list} />
+        )}
         <SignUpToBook book={book} />
+        <BookDetailsModal book={book} />
       </div>
     );
   }
