@@ -1,5 +1,6 @@
 import React from "react";
-import Row from "../../BookCard/Row";
+import Row from "./Row";
+import BookDetailsModal from "./BookDetailsModal";
 
 class BookCard extends React.Component {
   render() {
@@ -38,6 +39,8 @@ class BookCard extends React.Component {
           <Row label="Subscribers" delimeter={false}>
             {book.subscribers_count}
           </Row>
+        <BookDetailsModal book={book} />
+          
         </div>
       </div>
     );

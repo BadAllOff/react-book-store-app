@@ -2,8 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import BookCard from "../Card/BookCard";
 import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
-import SignUpToBook from "../../BookCard/SignUpToBook";
-import BookDetailsModal from "../../BookCard/BookDetailsModal";
+import SignUpToBook from "../Card/SignUpToBook";
 
 class BookContainer extends React.Component {
   render() {
@@ -14,7 +13,6 @@ class BookContainer extends React.Component {
         <BookCard book={book} />
         <AuthorsContainer authors={book.author_list} />
         <SignUpToBook book={book} />
-        <BookDetailsModal book={book} />
       </div>
     );
   }
