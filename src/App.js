@@ -1,6 +1,6 @@
 import React from "react";
 // import SimilarBooksList from "./components/SimilarBooks/SimilarBooksList";
-import BookContainer from "./components/BookContainer/BookContainer";
+import BookContainer from "./components/BooksContainer/BooksContainer";
 import ScrollButton from "./components/helpers/ScrollButton";
 import "./styles/styles.css";
 import Layout from "./components/Layout";

@@ -4,13 +4,13 @@ class AuthorCommission extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userOffer: this.props.book.min_price,
+      userOffer: Number(this.props.book.minPrice),
       authorsRevenue: 0,
     };
   }
 
   componentDidMount() {
-    this.calculateAuthorRevenue(this.state.userOffer);
+    this.calculate(this.state.userOffer);
     this.userOfferInput.focus();
   }
 
@@ -18,32 +18,45 @@ class AuthorCommission extends React.Component {
     this.setState({ [fieldName]: e.target.value });
   }
 
-  //Чую связь между двумя ниже функциями calculate - но уловить как в одну соединить не смог :)
-  // пробовал через if-ыб но одно мешает стейту другого после запуска componentDidMount
-  calculateAuthorRevenue(value) {
-    let min_price = this.props.book.min_price;
-    let authorsRevenue = ((value / 100) * 90).toFixed(2);
-    let userOffer = value;
+  // calculateAuthorRevenue(value) {
+  //   let minPrice = this.props.book.min_price;
+  //   let authorsRevenue = ((value / 100) * 90).toFixed(2);
+  //   let userOffer = Math.max(minPrice, value);
 
-    if (userOffer >= min_price) {
-      this.setState({
-        userOffer: userOffer,
-        authorsRevenue: authorsRevenue,
-      });
-    }
+  //   if (userOffer >= min_price) {
+  //     this.setState({
+  //       userOffer: userOffer,
+  //       authorsRevenue: authorsRevenue,
+  //     });
+  //   }
+  // }
+
+  calculate(sourcePrice, direction) {
+    const minPrice = this.props.book.minPrice;
+    const price = Math.max(minPrice, sourcePrice);
+
+    const power = direction === "to" ? 1 : -1;
+    const comission = 0.1;
+    const convertedPrice = (price * (1 - comission) * power).toFixed(2);
+
+    this.setState({
+      userOffer: price,
+      authorsRevenue: Math.abs(convertedPrice),
+    });
   }
 
-  calculateUserOffer(value) {
-    let min_price = this.props.book.min_price;
-    let userOffer = ((value / 90) * 100).toFixed(2);
+  // calculateUserOffer(value) {
+  //   let minPrice = this.props.book.min_price;
+  //   let userOffer = ((value / 90) * 100).toFixed(2);
+  //   let userOffer = Math.max(minPrice, value);
 
-    if (userOffer >= min_price) {
-      this.setState({
-        userOffer: userOffer,
-        authorsRevenue: value,
-      });
-    }
-  }
+  //   if (userOffer >= min_price) {
+  //     this.setState({
+  //       userOffer: userOffer,
+  //       authorsRevenue: value,
+  //     });
+  //   }
+  // }
 
   render() {
     const { book } = this.props;
@@ -61,15 +74,15 @@ class AuthorCommission extends React.Component {
               className="form-control slider"
               name="userOffer"
               type="range"
-              min={book.min_price}
-              max={book.main_price + 100}
-              onChange={(e) => this.calculateAuthorRevenue(e.target.value)}
+              min={book.minPrice}
+              max={book.mainPrice + 100}
+              onChange={(e) => this.calculate(e.target.value, "to")}
               ref={(input) => {
                 this.userOfferInput = input;
               }}
             />
             <small className="form-text text-muted">
-              Current ${userOffer} - Minimum ${book.min_price}
+              Current ${userOffer} - Minimum ${book.minPrice}
             </small>
           </span>
         </span>
@@ -83,9 +96,9 @@ class AuthorCommission extends React.Component {
               className="form-control slider"
               name="userOffer"
               type="range"
-              min={book.min_price}
-              max={book.main_price + 100}
-              onChange={(e) => this.calculateUserOffer(e.target.value)}
+              min={book.minPrice}
+              max={book.mainPrice + 100}
+              onChange={(e) => this.calculate(e.target.value)}
             />
             <small className="form-text text-muted">${authorsRevenue}</small>
           </span>

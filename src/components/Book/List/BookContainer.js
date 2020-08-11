@@ -11,7 +11,7 @@ class BookContainer extends React.Component {
     return (
       <div className="card-columns">
         <BookCard book={book} />
-        <AuthorsContainer authors={book.author_list} />
+        <AuthorsContainer authors={book.authorList} />
         <SignUpToBook book={book} />
       </div>
     );

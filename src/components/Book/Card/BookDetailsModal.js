@@ -17,7 +17,7 @@ class BookDetailsModal extends React.Component {
 
   render() {
     const { book } = this.props;
-    const authorNames = book.author_list
+    const authorNames = book.authorList
       .map((author) => author.name)
       .join(", ");
 
@@ -40,7 +40,7 @@ class BookDetailsModal extends React.Component {
                 <div className="row no-gutters">
                   <div className="col-md-4">
                     <img
-                      src={book.cover_image}
+                      src={book.coverImage}
                       className="card-img"
                       alt={book.title}
                     />

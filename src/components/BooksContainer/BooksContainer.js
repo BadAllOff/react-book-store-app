@@ -45,7 +45,7 @@ class BooksContainer extends React.Component {
       .then(this._mapFromAirtable.bind(this))
       .then((books) => {
         this.setState({
-          books: books,
+          books
         });
       });
   }
@@ -55,16 +55,16 @@ class BooksContainer extends React.Component {
       id: record.fields.id,
       title: record.fields.title,
       description: record.fields.description,
-      page_count: record.fields.page_count,
+      pageCount: record.fields.page_count,
       language: record.fields.language,
       progress: record.fields.progress,
-      cover_image: record.fields.cover_image[0].url,
-      author_list: this._mapAuthorsForEachRecord(record),
-      min_price: record.fields.min_price,
-      main_price: record.fields.main_price,
-      total_sum: record.fields.total_sum,
-      expected_sum: record.fields.expected_sum,
-      subscribers_count: record.fields.subscribers_count,
+      coverImage: record.fields.cover_image[0].url,
+      authorList: this._mapAuthorsForEachRecord(record),
+      minPrice: record.fields.min_price,
+      mainPrice: record.fields.main_price,
+      totalSum: record.fields.total_sum,
+      expectedSum: record.fields.expected_sum,
+      subscribersCount: record.fields.subscribers_count,
     }));
   }
 
