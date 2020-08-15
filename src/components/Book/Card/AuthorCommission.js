@@ -7,11 +7,13 @@ class AuthorCommission extends React.Component {
       userOffer: Number(this.props.book.minPrice),
       authorsRevenue: 0,
     };
+
+    this.userOfferInput = React.createRef();
   }
 
   componentDidMount() {
     this.calculate(this.state.userOffer);
-    this.userOfferInput.focus();
+    this.userOfferInput.current.focus();
   }
 
   handleChange(fieldName, e) {
@@ -31,9 +33,6 @@ class AuthorCommission extends React.Component {
 
       convertedPrice = (price * (1 - comission) * power).toFixed(2);
     } else {
-      // вычисления полной суммы которую должен заплатить юзер если
-      // хочет что бы автор получил конкретную сумму указанную на слайдере автора.
-      // Из известных из слайдера 90% суммы узнаём сколько будет 100% цена.
       price = ((sourcePrice / 90) * 100).toFixed(2);
 
       convertedPrice = sourcePrice;
@@ -46,10 +45,9 @@ class AuthorCommission extends React.Component {
   }
 
   render() {
-    const { book: {
-      mainPrice,
-      minPrice,
-    } } = this.props;
+    const {
+      book: { mainPrice, minPrice },
+    } = this.props;
     const authorsRevenue = this.state.authorsRevenue;
     const userOffer = this.state.userOffer;
 
@@ -69,9 +67,7 @@ class AuthorCommission extends React.Component {
               onChange={(e) => {
                 this.calculate(e.target.value, "to");
               }}
-              ref={(input) => {
-                this.userOfferInput = input;
-              }}
+              ref={this.userOfferInput}
             />
             <small className="form-text text-muted">
               Current ${userOffer} - Minimum ${minPrice}
@@ -91,7 +87,6 @@ class AuthorCommission extends React.Component {
               min={minPrice}
               max={mainPrice + 100}
               onChange={(e) => {
-                console.log("triggered");
                 this.calculate(e.target.value);
               }}
             />
