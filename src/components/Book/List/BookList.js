@@ -1,11 +1,11 @@
 import React from 'react'
-import BookCard from './BookCard';
+import BookContainer from './BookContainer';
 
 const BookList = ({books}) => {
     return(
       <div>
         {books.map(book => (
-          <BookCard key={book.id} book={book} />
+          <BookContainer key={book.id} book={book} />
         ))}
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
-import BookList from "../BookCard/BookList";
+import BookList from "../Book/List/BookList";
 import axios from "axios";
+import { zip, zipObject } from "lodash";
 
 const API_TOKEN = "key9ncgesGi9whRNC";
 
@@ -12,7 +13,7 @@ const httpClient = axios.create({
   },
 });
 
-class BookContainer extends React.Component {
+class BooksContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,9 +30,7 @@ class BookContainer extends React.Component {
     const { books } = this.state;
 
     return books ? (
-      <div>
-        <BookList books={books} />
-      </div>
+      <BookList books={books} />
     ) : (
       <div> Books not yet arrived.</div>
     );
@@ -47,7 +46,7 @@ class BookContainer extends React.Component {
       .then(this._mapFromAirtable.bind(this))
       .then((books) => {
         this.setState({
-          books: books,
+          books,
         });
       });
   }
@@ -57,16 +56,16 @@ class BookContainer extends React.Component {
       id: record.fields.id,
       title: record.fields.title,
       description: record.fields.description,
-      page_count: record.fields.page_count,
+      pageCount: record.fields.page_count,
       language: record.fields.language,
       progress: record.fields.progress,
-      cover_image: record.fields.cover_image[0].url,
-      author_list: this._mapAuthorsForEachRecord(record),
-      min_price: record.fields.min_price,
-      main_price: record.fields.main_price,
-      total_sum: record.fields.total_sum,
-      expected_sum: record.fields.expected_sum,
-      subscribers_count: record.fields.subscribers_count,
+      coverImage: record.fields.cover_image[0].url,
+      authorList: this._mapAuthorsForEachRecord(record),
+      minPrice: record.fields.min_price,
+      mainPrice: record.fields.main_price,
+      totalSum: record.fields.total_sum,
+      expectedSum: record.fields.expected_sum,
+      subscribersCount: record.fields.subscribers_count,
     }));
   }
 
@@ -74,15 +73,18 @@ class BookContainer extends React.Component {
     return record.fields.authors
       ? (() => {
           let arr = [];
+
           if (record.fields.authors.length > 0) {
             for (let i = 0; i < record.fields.authors.length; i++) {
-              arr[i] = {
-                id: record.fields["id (from authors)"][i],
-                name: record.fields["name (from authors)"][i],
-                email: record.fields["email (from authors)"][i],
-                about: record.fields["about (from authors)"][i],
-                avatar: record.fields["avatar (from authors)"][i].url,
-              };
+              arr = zip(
+                record.fields["id (from authors)"],
+                record.fields["name (from authors)"],
+                record.fields["email (from authors)"],
+                record.fields["about (from authors)"],
+                record.fields["avatar (from authors)"].map((item) => item.url)
+              ).map((record) =>
+                zipObject(["id", "name", "email", "about", "avatar"], record)
+              );
             }
           }
 
@@ -92,4 +94,4 @@ class BookContainer extends React.Component {
   }
 }
 
-export default BookContainer;
+export default BooksContainer;

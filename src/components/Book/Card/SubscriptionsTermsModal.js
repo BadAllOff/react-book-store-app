@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ModalContainer from "../ModalContainer/ModalContainer";
+import ModalContainer from "../../ModalContainer/ModalContainer";
 
 class SubscriptionsTermsModal extends React.Component {
   constructor(props) {
