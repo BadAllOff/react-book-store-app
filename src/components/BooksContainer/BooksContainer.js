@@ -1,6 +1,7 @@
 import React from "react";
 import BookList from "../Book/List/BookList";
 import axios from "axios";
+import { zip, zipObject } from "lodash";
 
 const API_TOKEN = "key9ncgesGi9whRNC";
 
@@ -45,7 +46,7 @@ class BooksContainer extends React.Component {
       .then(this._mapFromAirtable.bind(this))
       .then((books) => {
         this.setState({
-          books
+          books,
         });
       });
   }
@@ -72,15 +73,18 @@ class BooksContainer extends React.Component {
     return record.fields.authors
       ? (() => {
           let arr = [];
+
           if (record.fields.authors.length > 0) {
             for (let i = 0; i < record.fields.authors.length; i++) {
-              arr[i] = {
-                id: record.fields["id (from authors)"][i],
-                name: record.fields["name (from authors)"][i],
-                email: record.fields["email (from authors)"][i],
-                about: record.fields["about (from authors)"][i],
-                avatar: record.fields["avatar (from authors)"][i].url,
-              };
+              arr = zip(
+                record.fields["id (from authors)"],
+                record.fields["name (from authors)"],
+                record.fields["email (from authors)"],
+                record.fields["about (from authors)"],
+                record.fields["avatar (from authors)"].map((item) => item.url)
+              ).map((record) =>
+                zipObject(["id", "name", "email", "about", "avatar"], record)
+              );
             }
           }
 
