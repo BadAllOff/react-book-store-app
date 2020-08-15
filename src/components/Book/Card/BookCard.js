@@ -4,43 +4,54 @@ import BookDetailsModal from "./BookDetailsModal";
 
 class BookCard extends React.Component {
   render() {
-    const { book } = this.props;
-    const isBestseller = book.subscribersCount > 50 ? true : false;
-    const authorNames = book.authorList
-      .map((author) => author.name)
-      .join(", ");
+    const {
+      book: {
+        description,
+        authorList,
+        coverImage,
+        title,
+        subscribersCount,
+        pageCount,
+        language,
+        progress,
+        mainPrice,
+        minPrice,
+        totalSum,
+        expectedSum,
+      },
+    } = this.props;
+    const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
       <div className="card border-dark">
-        <img src={book.coverImage} className="card-img-top" alt={book.title} />
+        <img src={coverImage} className="card-img-top" alt={title} />
         <div className="card-body">
           <h5 className="card-title text-uppercase">
-            {book.title}
-            {isBestseller && (
+            {title}
+            {subscribersCount > 50 ? (
               <>
                 <br />
                 <span className="badge badge-pill badge-warning">
                   Bestseller!
                 </span>
               </>
-            )}
+            ) : null}
           </h5>
-          <Row label="Description">{book.description}</Row>
+          <Row label="Description">{description}</Row>
           <Row label="Author">
-            {book.authorList.length === 0 ? "No author" : authorNames}
+            {authorList.length === 0 ? "No author" : authorNames}
           </Row>
-          <Row label="Pages count"> {book.pageCount} pages</Row>
-          <Row label="Language">{book.language}</Row>
-          <Row label="Progress">{book.progress}%</Row>
-          <Row label="Main price">${book.mainPrice}</Row>
-          <Row label="Minimum price">${book.minPrice}</Row>
-          <Row label="Total sum">${book.totalSum}</Row>
-          <Row label="Expected revenue"> ${book.expectedSum}</Row>
+          <Row label="Pages count"> {pageCount} pages</Row>
+          <Row label="Language">{language}</Row>
+          <Row label="Progress">{progress}%</Row>
+          <Row label="Main price">${mainPrice}</Row>
+          <Row label="Minimum price">${minPrice}</Row>
+          <Row label="Total sum">${totalSum}</Row>
+          <Row label="Expected revenue"> ${expectedSum}</Row>
           <Row label="Subscribers" delimeter={false}>
-            {book.subscriberSount}
+            {subscribersCount}
           </Row>
-        <BookDetailsModal book={book} />
-          
+          <BookDetailsModal book={this.props.book} />
         </div>
       </div>
     );

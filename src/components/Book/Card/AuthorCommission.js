@@ -39,14 +39,17 @@ class AuthorCommission extends React.Component {
       convertedPrice = sourcePrice;
     }
 
-    this.setState(({ userOffer, authorsRevenue }) => ({
+    this.setState({
       userOffer: price,
       authorsRevenue: Math.abs(convertedPrice),
-    }));
+    });
   }
 
   render() {
-    const { book } = this.props;
+    const { book: {
+      mainPrice,
+      minPrice,
+    } } = this.props;
     const authorsRevenue = this.state.authorsRevenue;
     const userOffer = this.state.userOffer;
 
@@ -61,8 +64,8 @@ class AuthorCommission extends React.Component {
               className="form-control slider"
               name="userOffer"
               type="range"
-              min={book.minPrice}
-              max={book.mainPrice + 100}
+              min={minPrice}
+              max={mainPrice + 100}
               onChange={(e) => {
                 this.calculate(e.target.value, "to");
               }}
@@ -71,7 +74,7 @@ class AuthorCommission extends React.Component {
               }}
             />
             <small className="form-text text-muted">
-              Current ${userOffer} - Minimum ${book.minPrice}
+              Current ${userOffer} - Minimum ${minPrice}
             </small>
           </span>
         </span>
@@ -85,8 +88,8 @@ class AuthorCommission extends React.Component {
               className="form-control slider"
               name="userOffer"
               type="range"
-              min={book.minPrice}
-              max={book.mainPrice + 100}
+              min={minPrice}
+              max={mainPrice + 100}
               onChange={(e) => {
                 console.log("triggered");
                 this.calculate(e.target.value);

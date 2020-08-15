@@ -16,10 +16,15 @@ class BookDetailsModal extends React.Component {
   }
 
   render() {
-    const { book } = this.props;
-    const authorNames = book.authorList
-      .map((author) => author.name)
-      .join(", ");
+    const {
+      book: {
+        description,
+        authorList,
+        coverImage,
+        title,
+      },
+    } = this.props;
+    const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
       <>
@@ -33,22 +38,22 @@ class BookDetailsModal extends React.Component {
         {this.state.isOpen &&
           ReactDOM.createPortal(
             <ModalContainer
-              modalTitle={book.title}
+              modalTitle={title}
               closeModal={() => this.toggle()}
             >
               <div className="card mb-3">
                 <div className="row no-gutters">
                   <div className="col-md-4">
                     <img
-                      src={book.coverImage}
+                      src={coverImage}
                       className="card-img"
-                      alt={book.title}
+                      alt={title}
                     />
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
-                      <h5 className="card-title">{book.title}</h5>
-                      <p className="card-text">{book.description}.</p>
+                      <h5 className="card-title">{title}</h5>
+                      <p className="card-text">{description}.</p>
                       {authorNames ? (
                         <p className="card-text">
                           <small className="form-text text-muted">
@@ -60,7 +65,7 @@ class BookDetailsModal extends React.Component {
                   </div>
                 </div>
               </div>
-              <AuthorCommission book={book} />
+              <AuthorCommission book={this.props.book} />
             </ModalContainer>,
             document.getElementById("modal-root")
           )}
