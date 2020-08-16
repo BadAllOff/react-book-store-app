@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "react-dom";
 import BookCard from "../Card/BookCard";
 import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
 import SignUpToBook from "../Card/SignUpToBook";

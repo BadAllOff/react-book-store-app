@@ -29,11 +29,7 @@ class BooksContainer extends React.Component {
   render() {
     const { books } = this.state;
 
-    return books ? (
-      <BookList books={books} />
-    ) : (
-      <div> Books not yet arrived.</div>
-    );
+    return <BookList isLoading={!books} books={books} />;
   }
 
   _fetchData() {
