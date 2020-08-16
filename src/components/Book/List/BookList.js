@@ -1,5 +1,6 @@
 import React from 'react'
 import BookContainer from './BookContainer';
+import withBooks from '../../../HOC/withBooks'
 import withLoader from '../../../HOC/withLoader'
 
 const BookList = ({books}) => {
@@ -12,4 +13,4 @@ const BookList = ({books}) => {
     );
 }
 
-export default withLoader(BookList);
+export default withBooks(withLoader(BookList));
