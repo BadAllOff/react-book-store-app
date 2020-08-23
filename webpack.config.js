@@ -4,7 +4,7 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: { index: "./src/index.js" },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
