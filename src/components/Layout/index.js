@@ -1,40 +1,35 @@
 import React from "react";
 import UserInfo from "./UserInfo";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
 const Layout = ({ children }) => {
   return (
     <>
       <header>
-        <nav className="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
-          <a className="navbar-brand" href="#">
+        <Navbar bg="dark" expand="lg">
+          <Navbar.Brand href="#">
             <img
-              style={style.headerLogo}
+              className="d-inline-block align-top"
+              width="30"
+              height="30"
               src="https://www.pinclipart.com/picdir/big/345-3450811_free-png-download-helping-hands-png-images-background.png"
-            />
+            />{" "}
             Amazon Book Store
-          </a>
-          <div className="navbar-collapse">
+          </Navbar.Brand>
+          <Navbar.Collapse>
             <UserInfo />
-          </div>
-        </nav>
+          </Navbar.Collapse>
+        </Navbar>
       </header>
-      <main className="container" style={{ marginTop: "30px" }}>
-        {children}
-      </main>
+      <Container style={{ marginTop: "30px" }}>{children}</Container>
       <footer>
-        <div className="container">
+        <Container>
           <p>&copy; {new Date().getFullYear()}, Amazon Books</p>
-        </div>
+        </Container>
       </footer>
     </>
   );
 };
 
 export default Layout;
-
-const style = {
-  headerLogo: {
-    height: "50px",
-    marginRight: "20px",
-  },
-};

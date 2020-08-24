@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/styles.css";
 import BookList from "./components/Book/List/BookList";
 import ScrollButton from "./components/helpers/ScrollButton";

@@ -1,6 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Row from "./Row";
 import BookDetailsModal from "./BookDetailsModal";
+import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 
 class BookCard extends Component {
   render() {
@@ -23,20 +25,15 @@ class BookCard extends Component {
     const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
-      <div className="card border-dark">
-        <img src={coverImage} className="card-img-top" alt={title} />
-        <div className="card-body">
-          <h5 className="card-title text-uppercase">
-            {title}
-            {subscribersCount > 50 ? (
-              <>
-                <br />
-                <span className="badge badge-pill badge-warning">
-                  Bestseller!
-                </span>
-              </>
-            ) : null}
-          </h5>
+      <Card border="dark">
+        <Card.Img variant="top" src={coverImage} alt={title} />
+        <Card.Body>
+          <Card.Title className="text-uppercase">{title}</Card.Title>
+          {subscribersCount > 50 ? (
+            <Badge pill variant="warning">
+              Bestseller!
+            </Badge>
+          ) : null}
           <Row label="Description">{description}</Row>
           <Row label="Author">
             {authorList.length === 0 ? "No author" : authorNames}
@@ -52,8 +49,8 @@ class BookCard extends Component {
             {subscribersCount}
           </Row>
           <BookDetailsModal book={this.props.book} />
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     );
   }
 }
