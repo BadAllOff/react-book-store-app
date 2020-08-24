@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
 
 class ScrollButton extends Component {
   constructor(props) {
@@ -50,15 +51,16 @@ class ScrollButton extends Component {
     const { ToggleScrollUp } = this.state;
 
     return (
-      <button
+      <Button
+        variant="secondary"
         style={styles.scrollUpBtn}
         onClick={() => {
           this.scrollToTop();
         }}
-        className={`btn btn-outline-secondary ${ToggleScrollUp}`}
+        className={`${ToggleScrollUp}`}
       >
         UP
-      </button>
+      </Button>
     );
   }
 }
