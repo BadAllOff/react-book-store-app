@@ -1,9 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 import BookCard from "../Card/BookCard";
 import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
 import SignUpToBook from "../Card/SignUpToBook";
 
-class BookContainer extends React.Component {
+class BookContainer extends Component {
   render() {
     const { book } = this.props;
 

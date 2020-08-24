@@ -1,11 +1,14 @@
-import React from "react";
-// import SimilarBooksList from "./components/SimilarBooks/SimilarBooksList";
+import React, {Component} from "react";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/styles.css";
 import BookList from "./components/Book/List/BookList";
 import ScrollButton from "./components/helpers/ScrollButton";
-import "./styles/styles.css";
 import Layout from "./components/Layout";
+// import SimilarBooksList from "./components/SimilarBooks/SimilarBooksList";
 
-class App extends React.Component {
+
+class App extends Component {
   render() {
     const { books } = this.props;
     return (

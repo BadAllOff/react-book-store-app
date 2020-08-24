@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import Row from "./Row";
 import BookDetailsModal from "./BookDetailsModal";
 
-class BookCard extends React.Component {
+class BookCard extends Component {
   render() {
     const {
       book: {

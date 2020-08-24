@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import AuthorCard from "./AuthorCard";
 import ShowAuthorsBtn from "./ShowAuthorsBtn";
 
-class AuthorsContainer extends React.Component {
+class AuthorsContainer extends Component {
   constructor(props) {
     super(props);
 

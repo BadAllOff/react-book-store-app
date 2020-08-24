@@ -1,9 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import ModalContainer from "../../ModalContainer/ModalContainer";
 import AuthorCommission from "./AuthorCommission";
 
-class BookDetailsModal extends React.Component {
+class BookDetailsModal extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };

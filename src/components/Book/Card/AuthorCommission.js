@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 
-class AuthorCommission extends React.Component {
+class AuthorCommission extends Component {
   constructor(props) {
     super(props);
     this.state = {

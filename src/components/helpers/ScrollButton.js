@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 
-class ScrollButton extends React.Component {
+class ScrollButton extends Component {
   constructor(props) {
     super(props);
 
@@ -22,9 +22,6 @@ class ScrollButton extends React.Component {
     window.removeEventListener("scroll", this.HandleScroll);
   }
 
-  // Понравился некоторый код в
-  // https://github.com/dirtyredz/react-scroll-up-button
-  // позаимствовал немного :)
   HandleScroll() {
     const { ShowAtPosition, TransitionClassName } = this.props;
     if (window.pageYOffset > ShowAtPosition) {

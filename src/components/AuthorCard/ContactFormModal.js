@@ -1,10 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
 
 import ModalContainer from "../ModalContainer/ModalContainer";
 import Field from "../helpers/Field";
 
-class ContactFormModal extends React.Component {
+class ContactFormModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
