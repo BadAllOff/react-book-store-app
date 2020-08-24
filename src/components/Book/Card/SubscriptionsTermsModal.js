@@ -1,49 +1,42 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ModalContainer from "../../ModalContainer/ModalContainer";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-class SubscriptionsTermsModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isOpen: false };
-  }
+const SubscriptionsTermsModal = () => {
+  const [show, setShow] = useState(false);
 
-  toggle() {
-    this.setState(({isOpen}) => ({
-      isOpen: !isOpen,
-    }));
-  }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  render() {
-    return (
-      <>
-        <a className="btn btn-light" onClick={() => this.toggle()}>
-          Subscribe and get free merch from the writer! Click to know more!
-        </a>
-        {this.state.isOpen &&
-          ReactDOM.createPortal(
-            <ModalContainer closeModal={() => this.toggle()}>
-              <div className="modal-body">
-                <p>
-                  Depending on the amount of the transfer, you can get a book
-                  with personal signature of the author, merch (T-shirts, cups
-                  and many others), and honorable mention in gratitude.
-                </p>
-                <p>Subscribe and get it all for free!</p>
-                <button
-                  type="button"
-                  onClick={() => this.toggle()}
-                  className="btn btn-primary"
-                >
-                  STFU and take my $$$ now!
-                </button>
-              </div>
-            </ModalContainer>,
-            document.getElementById("modal-root")
-          )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Button variant="light" onClick={handleShow}>
+        Subscribe and get free merch from the writer! Click to know more!
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Subscribe to get Merch</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Depending on the amount of the transfer, you can get a book with
+            personal signature of the author, merch (T-shirts, cups and many
+            others), and honorable mention in gratitude.
+          </p>
+          <p>Subscribe and get it all for free!</p>
+          <Button variant="primary" onClick={handleClose}>
+            STFU and take my $$$ now!
+          </Button>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};
 
 export default SubscriptionsTermsModal;
