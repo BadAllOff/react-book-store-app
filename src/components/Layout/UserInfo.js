@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import AuthContext from "../meta/AuthContext";
+import Nav from "react-bootstrap/Nav";
 
 const UserInfo = () => {
   const u = useContext(AuthContext);
   return (
-    <ul className="navbar-nav ml-auto nav-flex-icons">
-      <li className="nav-item avatar">
-        <a className="nav-link p-0" href="#">
+    <Nav className="ml-auto nav-flex-icons">
+        <Nav.Link href="#">
           {u.firstName && `${u.firstName} ${u.lastName} `}
           <img
             src={u.avatarUrl}
@@ -14,9 +14,8 @@ const UserInfo = () => {
             alt={`${u.firstName} ${u.lastName}`}
             height="35"
           />
-        </a>
-      </li>
-    </ul>
+        </Nav.Link >
+    </Nav>
   );
 };
 

@@ -1,4 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class AuthorCommission extends Component {
   constructor(props) {
@@ -53,10 +56,12 @@ class AuthorCommission extends Component {
 
     return (
       <>
-        <span className="form-group row">
-          <small className="col-sm-4 col-form-label">If you pay:</small>
-          <span className="col-sm-8">
-            <input
+        <Form.Group as={Row}>
+          <Form.Label column sm="4">
+            If you pay:
+          </Form.Label>
+          <Col sm="8">
+            <Form.Control
               step="0.01"
               value={userOffer}
               className="form-control slider"
@@ -72,13 +77,15 @@ class AuthorCommission extends Component {
             <small className="form-text text-muted">
               Current ${userOffer} - Minimum ${minPrice}
             </small>
-          </span>
-        </span>
+          </Col>
+        </Form.Group>
 
-        <span className="form-group row">
-          <small className="col-sm-4 col-form-label">Author will get:</small>
-          <span className="col-sm-8">
-            <input
+        <Form.Group as={Row}>
+          <Form.Label column sm="4">
+            Author will get:
+          </Form.Label>
+          <Col sm="8">
+            <Form.Control
               step="0.01"
               value={authorsRevenue}
               className="form-control slider"
@@ -91,8 +98,8 @@ class AuthorCommission extends Component {
               }}
             />
             <small className="form-text text-muted">${authorsRevenue}</small>
-          </span>
-        </span>
+          </Col>
+        </Form.Group>
       </>
     );
   }

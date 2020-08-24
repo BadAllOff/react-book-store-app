@@ -1,19 +1,20 @@
 import React from "react";
 import ContactFormModal from "./ContactFormModal";
+import Card from "react-bootstrap/Card";
 
 const AuthorCard = ({ author }) => {
   return (
-    <div className="card border-dark">
-      <img className="card-img-top" src={author.avatar} alt={author.name} />
-      <div className="card-body">
-        <h5 className="card-title">{author.name}</h5>
-        <p className="card-text">{author.about}</p>
-        <p className="card-text">
+    <Card border="dark">
+      <Card.Img variant="top" src={author.avatar} alt={author.name} />
+      <Card.Body>
+        <Card.Title>{author.name}</Card.Title>
+        <Card.Text>{author.about}</Card.Text>
+        <Card.Text>
           <small className="text-muted">{author.email}</small>
-        </p>
+        </Card.Text>
         <ContactFormModal author={author} />
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 

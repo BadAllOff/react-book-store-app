@@ -1,26 +1,28 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
-
-import ModalContainer from "../ModalContainer/ModalContainer";
+import React, { Component } from "react";
 import Field from "../helpers/Field";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 class ContactFormModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
+      show: false,
       name: "unknown",
       email: "unknown@example.com",
       message: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleShow = this.toggleShow.bind(this);
   }
 
-  toggle() {
-    this.setState(({isOpen}) => ({
-      isOpen: !isOpen,
+  toggleShow() {
+    this.setState(({ show }) => ({
+      show: !show,
     }));
   }
+  
 
   handleChange(fieldName, e) {
     this.setState({ [fieldName]: e.target.value });
@@ -33,61 +35,62 @@ class ContactFormModal extends Component {
       message: this.state.message,
     });
     event.preventDefault();
-    this.toggle();
+    this.toggleShow();
   }
 
   render() {
     const { author } = this.props;
+    const { show } = this.state;
 
     return (
       <>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => this.toggle()}
-        >
+        <Button variant="dark" onClick={this.toggleShow}>
           Write to author
-        </button>
-        {this.state.isOpen &&
-          ReactDOM.createPortal(
-            <ModalContainer
-              modalTitle={`Write to ${author.name}`}
-              closeModal={() => this.toggle()}
-            >
-              <form onSubmit={this.handleSubmit}>
-                <Field
-                  name="email"
-                  label="Email address"
-                  value={this.state.email}
-                  type="email"
-                  inputType="input"
-                  handleChange={(name, e) => this.handleChange(name, e)}
-                  hint="We'll never share your email with anyone else."
-                />
-                <Field
-                  name="name"
-                  label="Your Name"
-                  value={this.state.name}
-                  type="input"
-                  inputType="input"
-                  handleChange={(name, e) => this.handleChange(name, e)}
-                />
-                <Field
-                  name="message"
-                  label="Your message"
-                  value={this.state.message}
-                  type="textarea"
-                  inputType="textarea"
-                  handleChange={(name, e) => this.handleChange(name, e)}
-                  options={{ rows: "3", cols: "40" }}
-                />
-                <button type="submit" className="btn btn-primary">
-                  Send message
-                </button>
-              </form>
-            </ModalContainer>,
-            document.getElementById("modal-root")
-          )}
+        </Button>
+
+        <Modal
+          show={show}
+          onHide={this.toggleShow}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{`Write to ${author.name}`}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+             <Form onSubmit={this.handleSubmit}>
+              <Field
+                name="email"
+                label="Email address"
+                value={this.state.email}
+                type="email"
+                inputType="input"
+                handleChange={(name, e) => this.handleChange(name, e)}
+                hint="We'll never share your email with anyone else."
+              />
+              <Field
+                name="name"
+                label="Your Name"
+                value={this.state.name}
+                type="input"
+                inputType="input"
+                handleChange={(name, e) => this.handleChange(name, e)}
+              />
+              <Field
+                name="message"
+                label="Your message"
+                value={this.state.message}
+                type="textarea"
+                inputType="textarea"
+                handleChange={(name, e) => this.handleChange(name, e)}
+                options={{ as: "textarea", rows: "3", cols: "40" }}
+              />
+              <Button type="submit">
+                Send message
+              </Button>
+            </Form>
+          </Modal.Body>
+        </Modal>
       </>
     );
   }

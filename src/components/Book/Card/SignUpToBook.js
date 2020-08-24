@@ -10,7 +10,7 @@ const SignUpToBook = ({ book }) => {
     <Card border="dark">
       <Card.Body>
         <Card.Text>
-          Sign up and get latest information about "{book.title}"{" "}
+          Sign up and get latest information about "{book.title}"
         </Card.Text>
         <Form>
           <Form.Group>
@@ -21,7 +21,7 @@ const SignUpToBook = ({ book }) => {
             />
           </Form.Group>
           <Form.Group>
-            <Button  variant="primary" size="lg" block >
+            <Button  variant="dark" size="lg" block >
               Sign up
             </Button>
           </Form.Group>

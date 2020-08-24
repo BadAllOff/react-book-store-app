@@ -10,15 +10,15 @@ const SubscriptionsTermsModal = () => {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
+      <Button variant="warning" onClick={handleShow}>
         Subscribe and get free merch from the writer! Click to know more!
       </Button>
 
       <Modal
         show={show}
+        size="lg"
         onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Subscribe to get Merch</Modal.Title>

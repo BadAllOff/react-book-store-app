@@ -1,74 +1,71 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import ModalContainer from "../../ModalContainer/ModalContainer";
+import React, { Component } from "react";
 import AuthorCommission from "./AuthorCommission";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 
 class BookDetailsModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
+    this.state = { show: false };
+    this.toggleShow = this.toggleShow.bind(this);
   }
 
-  toggle() {
-    this.setState(({ isOpen }) => ({
-      isOpen: !isOpen,
+  toggleShow() {
+    this.setState(({ show }) => ({
+      show: !show,
     }));
+    this.forceUpdate();
   }
 
   render() {
     const {
-      book: {
-        description,
-        authorList,
-        coverImage,
-        title,
-      },
+      book: { description, authorList, coverImage, title },
     } = this.props;
+    const { show } = this.state;
     const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
       <>
-        <a
-          type="button"
-          className="btn btn-block btn-info"
-          onClick={() => this.toggle()}
-        >
+        <Button variant="dark" onClick={this.toggleShow} block>
           Show book details
-        </a>
-        {this.state.isOpen &&
-          ReactDOM.createPortal(
-            <ModalContainer
-              modalTitle={title}
-              closeModal={() => this.toggle()}
-            >
-              <div className="card mb-3">
-                <div className="row no-gutters">
-                  <div className="col-md-4">
-                    <img
-                      src={coverImage}
-                      className="card-img"
-                      alt={title}
-                    />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h5 className="card-title">{title}</h5>
-                      <p className="card-text">{description}.</p>
-                      {authorNames ? (
-                        <p className="card-text">
-                          <small className="form-text text-muted">
-                            {authorNames}
-                          </small>
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <AuthorCommission book={this.props.book} />
-            </ModalContainer>,
-            document.getElementById("modal-root")
-          )}
+        </Button>
+
+        <Modal show={show} onHide={this.toggleShow}>
+          <Modal.Header closeButton>
+            <Modal.Title>Close modal</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Card>
+              <Card.Img
+                style={{ opacity: 0.5 }}
+                src={coverImage}
+                className="card-img"
+                alt={title}
+              />
+              <Card.ImgOverlay
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
+              >
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{description}.</Card.Text>
+                  {authorNames ? (
+                    <Card.Text>
+                      <small className="text-muted">{authorNames}</small>
+                    </Card.Text>
+                  ) : null}
+                </Card.Body>
+              </Card.ImgOverlay>
+            </Card>
+            <hr />
+            <AuthorCommission book={this.props.book} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.toggleShow}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </>
     );
   }

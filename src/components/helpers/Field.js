@@ -1,4 +1,5 @@
 import React from "react";
+import Form from "react-bootstrap/Form";
 
 const Field = (props) => {
   const {
@@ -13,18 +14,17 @@ const Field = (props) => {
   } = props;
 
   return (
-    <div className="form-group">
-      <label>{label}</label>
-      <InputType
+    <Form.Group>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control
         {...options}
-        className="form-control"
         name={name}
         value={value}
         type={type}
         onChange={(e) => handleChange(name, e)}
       />
-      {hint && <small className="form-text text-muted">{hint}</small>}
-    </div>
+      {hint && <Form.Text className="text-muted">{hint}</Form.Text>}
+    </Form.Group>
   );
 };
 
