@@ -30,7 +30,7 @@ const SubscriptionsTermsModal = () => {
             others), and honorable mention in gratitude.
           </p>
           <p>Subscribe and get it all for free!</p>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose}>
             STFU and take my $$$ now!
           </Button>
         </Modal.Body>

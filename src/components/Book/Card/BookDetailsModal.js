@@ -61,7 +61,7 @@ class BookDetailsModal extends Component {
             <AuthorCommission book={this.props.book} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.toggleShow}>
+            <Button variant="dark" onClick={this.toggleShow}>
               Close
             </Button>
           </Modal.Footer>

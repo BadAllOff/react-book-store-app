@@ -85,7 +85,7 @@ class ContactFormModal extends Component {
                 handleChange={(name, e) => this.handleChange(name, e)}
                 options={{ as: "textarea", rows: "3", cols: "40" }}
               />
-              <Button type="submit">
+              <Button variant="dark" type="submit">
                 Send message
               </Button>
             </Form>
