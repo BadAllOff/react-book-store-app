@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 import AuthorCommission from "./AuthorCommission";
 import { Button, Modal, Card } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledModalBody = styled(Modal.Body)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+`;
+const StyledModalHeader = styled(Modal.Header)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+`;
+const StyledModalFooter = styled(Modal.Footer)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+`;
+
+const StyledCardImgOverlay = styled(Card.ImgOverlay)`
+  background-color: "rgba(255, 255, 255, 0.7)";
+`;
 
 class BookDetailsModal extends Component {
   constructor(props) {
@@ -30,10 +48,10 @@ class BookDetailsModal extends Component {
         </Button>
 
         <Modal show={show} onHide={this.toggleShow}>
-          <Modal.Header closeButton>
+          <StyledModalHeader closeButton>
             <Modal.Title>Close modal</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          </StyledModalHeader>
+          <StyledModalBody>
             <Card>
               <Card.Img
                 style={{ opacity: 0.5 }}
@@ -41,9 +59,7 @@ class BookDetailsModal extends Component {
                 className="card-img"
                 alt={title}
               />
-              <Card.ImgOverlay
-                style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
-              >
+              <StyledCardImgOverlay>
                 <Card.Body>
                   <Card.Title>{title}</Card.Title>
                   <Card.Text>{description}.</Card.Text>
@@ -53,16 +69,14 @@ class BookDetailsModal extends Component {
                     </Card.Text>
                   ) : null}
                 </Card.Body>
-              </Card.ImgOverlay>
+              </StyledCardImgOverlay>
             </Card>
             <hr />
             <AuthorCommission book={this.props.book} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.toggleShow}>
-              Close
-            </Button>
-          </Modal.Footer>
+          </StyledModalBody>
+          <StyledModalFooter>
+            <Button onClick={this.toggleShow}>Close</Button>
+          </StyledModalFooter>
         </Modal>
       </>
     );

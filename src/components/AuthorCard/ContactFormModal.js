@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import Field from "../helpers/Field";
 import { Button, Modal, Form } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledModalBody = styled(Modal.Body)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+`;
+const StyledModalHeader = styled(Modal.Header)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+`;
 
 class ContactFormModal extends Component {
   constructor(props) {
@@ -41,9 +51,7 @@ class ContactFormModal extends Component {
 
     return (
       <>
-        <Button onClick={this.toggleShow}>
-          Write to author
-        </Button>
+        <Button onClick={this.toggleShow}>Write to author</Button>
 
         <Modal
           show={show}
@@ -51,10 +59,10 @@ class ContactFormModal extends Component {
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header closeButton>
+          <StyledModalHeader closeButton>
             <Modal.Title>{`Write to ${author.name}`}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          </StyledModalHeader>
+          <StyledModalBody>
             <Form onSubmit={this.handleSubmit}>
               <Field
                 name="email"
@@ -82,11 +90,9 @@ class ContactFormModal extends Component {
                 handleChange={(name, e) => this.handleChange(name, e)}
                 options={{ as: "textarea", rows: "3", cols: "40" }}
               />
-              <Button type="submit">
-                Send message
-              </Button>
+              <Button type="submit">Send message</Button>
             </Form>
-          </Modal.Body>
+          </StyledModalBody>
         </Modal>
       </>
     );
