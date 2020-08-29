@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import AuthorCommission from "./AuthorCommission";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Card from "react-bootstrap/Card";
+import { Button, Modal, Card } from "react-bootstrap";
 
 class BookDetailsModal extends Component {
   constructor(props) {

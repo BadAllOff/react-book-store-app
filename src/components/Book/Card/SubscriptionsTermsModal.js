@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Button, Modal } from "react-bootstrap";
 
 const SubscriptionsTermsModal = () => {
   const [show, setShow] = useState(false);
@@ -14,12 +13,7 @@ const SubscriptionsTermsModal = () => {
         Subscribe and get free merch from the writer! Click to know more!
       </Button>
 
-      <Modal
-        show={show}
-        size="lg"
-        onHide={handleClose}
-        centered
-      >
+      <Modal show={show} size="lg" onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Subscribe to get Merch</Modal.Title>
         </Modal.Header>

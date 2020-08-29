@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 
 const AuthorCard = ({ author }) => {
   return (
-    <Card border="dark">
+    <Card>
       <Card.Img variant="top" src={author.avatar} alt={author.name} />
       <Card.Body>
         <Card.Title>{author.name}</Card.Title>

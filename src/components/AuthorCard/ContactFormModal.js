@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Field from "../helpers/Field";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
+import { Button, Modal, Form } from "react-bootstrap";
 
 class ContactFormModal extends Component {
   constructor(props) {
@@ -22,7 +20,6 @@ class ContactFormModal extends Component {
       show: !show,
     }));
   }
-  
 
   handleChange(fieldName, e) {
     this.setState({ [fieldName]: e.target.value });
@@ -58,7 +55,7 @@ class ContactFormModal extends Component {
             <Modal.Title>{`Write to ${author.name}`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-             <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit}>
               <Field
                 name="email"
                 label="Email address"

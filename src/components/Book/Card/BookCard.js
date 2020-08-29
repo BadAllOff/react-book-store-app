@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import BookDetailsModal from "./BookDetailsModal";
-import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
+import { Badge, Card } from "react-bootstrap";
 
 class BookCard extends Component {
   render() {

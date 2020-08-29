@@ -1,11 +1,9 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-
+import { Card, Button } from "react-bootstrap";
 
 const ShowAuthorsBtn = ({ authors_count, showAllAuthors, toggleShowAll }) => {
   return (
-    <Card border='secondary'>
+    <Card border="secondary">
       <Card.Body>
         <Button variant="dark" block onClick={toggleShowAll}>
           {showAllAuthors
