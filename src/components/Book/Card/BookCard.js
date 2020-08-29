@@ -24,7 +24,7 @@ class BookCard extends Component {
     const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
-      <Card border="dark">
+      <Card>
         <Card.Img variant="top" src={coverImage} alt={title} />
         <Card.Body>
           <Card.Title className="text-uppercase">{title}</Card.Title>

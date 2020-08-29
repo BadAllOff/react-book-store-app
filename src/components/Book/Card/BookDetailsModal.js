@@ -25,7 +25,7 @@ class BookDetailsModal extends Component {
 
     return (
       <>
-        <Button variant="dark" onClick={this.toggleShow} block>
+        <Button onClick={this.toggleShow} block>
           Show book details
         </Button>
 
@@ -59,7 +59,7 @@ class BookDetailsModal extends Component {
             <AuthorCommission book={this.props.book} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="dark" onClick={this.toggleShow}>
+            <Button onClick={this.toggleShow}>
               Close
             </Button>
           </Modal.Footer>

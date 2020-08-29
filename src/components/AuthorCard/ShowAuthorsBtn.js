@@ -5,7 +5,7 @@ const ShowAuthorsBtn = ({ authors_count, showAllAuthors, toggleShowAll }) => {
   return (
     <Card border="secondary">
       <Card.Body>
-        <Button variant="dark" block onClick={toggleShowAll}>
+        <Button block onClick={toggleShowAll}>
           {showAllAuthors
             ? `Show only 3 Authors`
             : `Show all ${authors_count} Authors`}

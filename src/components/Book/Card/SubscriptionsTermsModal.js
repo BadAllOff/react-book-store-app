@@ -9,7 +9,7 @@ const SubscriptionsTermsModal = () => {
 
   return (
     <>
-      <Button variant="warning" onClick={handleShow}>
+      <Button onClick={handleShow}>
         Subscribe and get free merch from the writer! Click to know more!
       </Button>
 
@@ -24,7 +24,7 @@ const SubscriptionsTermsModal = () => {
             others), and honorable mention in gratitude.
           </p>
           <p>Subscribe and get it all for free!</p>
-          <Button variant="dark" onClick={handleClose}>
+          <Button onClick={handleClose}>
             STFU and take my $$$ now!
           </Button>
         </Modal.Body>

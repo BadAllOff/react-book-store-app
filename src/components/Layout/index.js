@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <header>
-        <Navbar variant="dark" bg="dark" expand="lg">
+        <Navbar expand="lg">
           <Navbar.Brand href="#">
             <img
               className="d-inline-block align-top"
