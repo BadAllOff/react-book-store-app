@@ -5,6 +5,9 @@ import { Container, Navbar, Button } from "react-bootstrap";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import { GlobalStyles } from "../../styles/global";
+import "bootswatch/dist/darkly/bootstrap.min.css";
+
+
 
 const Layout = ({ children }) => {
   const [theme, setTheme] = useState("light");
