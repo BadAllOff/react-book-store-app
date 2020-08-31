@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import UserInfo from "./UserInfo";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import { Container, Navbar, Button } from "react-bootstrap";
+
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../../styles/theme";
+import { GlobalStyles } from "../../styles/global";
+import "bootswatch/dist/darkly/bootstrap.min.css";
+
+
 
 const Layout = ({ children }) => {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    // if the theme is not light, then set it to dark
+    if (theme === "light") {
+      setTheme("dark");
+      // otherwise, it should be light
+    } else {
+      setTheme("light");
+    }
+  };
+
   return (
-    <>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
       <header>
-        <Navbar variant="dark" bg="dark" expand="lg">
+        <Navbar bg={theme === "light" ? "dark" : "light"} expand="lg">
           <Navbar.Brand href="#">
             <img
               className="d-inline-block align-top"
@@ -17,6 +35,12 @@ const Layout = ({ children }) => {
             />{" "}
             Amazon Book Store
           </Navbar.Brand>
+          <Button
+            variant={theme === "light" ? "light" : "dark"}
+            onClick={toggleTheme}
+          >
+            Toggle theme
+          </Button>
           <Navbar.Collapse>
             <UserInfo />
           </Navbar.Collapse>
@@ -28,7 +52,7 @@ const Layout = ({ children }) => {
           <p>&copy; {new Date().getFullYear()}, Amazon Books</p>
         </Container>
       </footer>
-    </>
+    </ThemeProvider>
   );
 };
 

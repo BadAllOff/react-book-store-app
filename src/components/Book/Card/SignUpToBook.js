@@ -1,13 +1,11 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Card, Form, Button } from "react-bootstrap";
 
 import SubscriptionsTermsModal from "./SubscriptionsTermsModal";
 
 const SignUpToBook = ({ book }) => {
   return (
-    <Card border="dark">
+    <Card>
       <Card.Body>
         <Card.Text>
           Sign up and get latest information about "{book.title}"
@@ -21,7 +19,7 @@ const SignUpToBook = ({ book }) => {
             />
           </Form.Group>
           <Form.Group>
-            <Button  variant="dark" size="lg" block >
+            <Button size="lg" block>
               Sign up
             </Button>
           </Form.Group>

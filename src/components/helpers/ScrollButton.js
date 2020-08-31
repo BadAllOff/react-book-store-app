@@ -52,7 +52,6 @@ class ScrollButton extends Component {
 
     return (
       <Button
-        variant="secondary"
         style={styles.scrollUpBtn}
         onClick={() => {
           this.scrollToTop();

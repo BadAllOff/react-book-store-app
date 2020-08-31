@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import BookDetailsModal from "./BookDetailsModal";
-import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
+import { Badge, Card } from "react-bootstrap";
 
 class BookCard extends Component {
   render() {
@@ -25,7 +24,7 @@ class BookCard extends Component {
     const authorNames = authorList.map((author) => author.name).join(", ");
 
     return (
-      <Card border="dark">
+      <Card>
         <Card.Img variant="top" src={coverImage} alt={title} />
         <Card.Body>
           <Card.Title className="text-uppercase">{title}</Card.Title>
