@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import UserInfo from "./UserInfo";
 import { Button, Navbar } from "react-bootstrap";
 import { ThemeContext } from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderNavigation = (props) => {
   const theme = useContext(ThemeContext);
 
   return (
     <Navbar bg={theme.bg} variant={theme.variant} expand="lg">
-      <Navbar.Brand href="#">
+      <Navbar.Brand as={Link} to="/">
         <img
           className="d-inline-block align-top"
           width="30"

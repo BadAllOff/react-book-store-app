@@ -36,7 +36,7 @@ class ShortBookCard extends React.Component {
           <Card.Title className="text-uppercase">{title}</Card.Title>
           {subscribersCount > 50 ? (
             <Badge pill variant="warning">
-              Bestseller!
+              Bestseller
             </Badge>
           ) : null}
           <p>{description}</p>

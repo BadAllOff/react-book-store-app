@@ -20,7 +20,7 @@ export const darkTheme = {
     variant: "dark",
   },
   body: "#363537",
-  text: "#FAFAFA",
+  text: "#cfd2d6",
   toggleBorder: "#6B8096",
   gradient: "linear-gradient(#091236, #1E215D)",
   jumbotronBg: "303030"
