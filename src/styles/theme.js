@@ -1,5 +1,10 @@
 export const lightTheme = {
   className: "light",
+  bg: "light",
+  variant: "light",
+  btn: {
+    variant: "light",
+  },
   body: "#E2E2E2",
   text: "#363537",
   toggleBorder: "#FFF",
@@ -8,6 +13,11 @@ export const lightTheme = {
 
 export const darkTheme = {
   className: "dark",
+  bg: "dark",
+  variant: "dark",
+  btn: {
+    variant: "dark",
+  },
   body: "#363537",
   text: "#FAFAFA",
   toggleBorder: "#6B8096",
