@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import HeaderNavigation from "./HeaderNavigation";
-import Jumbotron from "./HeaderJumbotron";
+
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import { GlobalStyles } from "../../styles/global";
@@ -25,8 +25,7 @@ const Layout = ({ children }) => {
       <header>
         <HeaderNavigation toggleTheme={toggleTheme} />
       </header>
-      <Jumbotron />
-      <Container style={{ marginTop: "30px" }}>{children}</Container>
+      {children}
       <footer>
         <Container>
           <p>&copy; {new Date().getFullYear()}, Amazon Books</p>
