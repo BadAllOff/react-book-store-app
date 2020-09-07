@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Row from "./Row";
-import BookDetailsModal from "./BookDetailsModal";
 import { Badge, Card } from "react-bootstrap";
+// import { withRouter } from "react-router";
+import withBook from "../../HOC/withBook";
 
 class BookCard extends Component {
   render() {
@@ -47,11 +48,10 @@ class BookCard extends Component {
           <Row label="Subscribers" delimeter={false}>
             {subscribersCount}
           </Row>
-          <BookDetailsModal book={this.props.book} />
         </Card.Body>
       </Card>
     );
   }
 }
 
-export default BookCard;
+export default withBook(BookCard);

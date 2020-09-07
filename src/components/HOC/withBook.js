@@ -12,8 +12,8 @@ const httpClient = axios.create({
   },
 });
 
-const withBooks = (EnhancedComponent) =>
-  class WithBooks extends React.Component {
+const withBook = (EnhancedComponent) => 
+  class WithBook extends React.Component {
     constructor(props) {
       super(props);
 
@@ -28,16 +28,12 @@ const withBooks = (EnhancedComponent) =>
 
     render() {
       const { books } = this.state;
-
-      return <EnhancedComponent isLoading={!books} books={books} />;
+      return(<EnhancedComponent isLoading={!books} book={books} />);
     }
 
     _fetchData() {
       httpClient
-        .get("/books", {
-          maxRecords: 3,
-          view: "Grid view",
-        })
+        .get(`/books/recR32YW9A9Ov73EW`)
         .then((result) => result.data)
         .then(this._mapFromAirtable.bind(this))
         .then((books) => {
@@ -47,8 +43,8 @@ const withBooks = (EnhancedComponent) =>
         });
     }
 
-    _mapFromAirtable({ records }) {
-      return records.map((record) => ({
+    _mapFromAirtable(record) {
+      return({
         id: record.id,
         title: record.fields.title,
         description: record.fields.description,
@@ -62,7 +58,7 @@ const withBooks = (EnhancedComponent) =>
         totalSum: record.fields.total_sum,
         expectedSum: record.fields.expected_sum,
         subscribersCount: record.fields.subscribers_count,
-      }));
+      });
     }
 
     _mapAuthorsForEachRecord(record) {
@@ -90,4 +86,4 @@ const withBooks = (EnhancedComponent) =>
     }
   };
 
-export default withBooks;
+export default withBook;

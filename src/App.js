@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./styles/styles.css";
 import Main from "./components/Pages/Main";
+import Book from "./components/Pages/Book";
 import NotFound from "./components/Pages/NotFound";
+
 
 class App extends Component {
   render() {
@@ -11,6 +13,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route component={Main} path="/" exact />
+          <Route component={Book} path="/book/:id" strict exact />
           <Route component={NotFound} />
         </Switch>
       </Router>
