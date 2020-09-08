@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AuthorCard from "./AuthorCard";
 import ShowAuthorsBtn from "./ShowAuthorsBtn";
 
@@ -11,7 +11,9 @@ class AuthorsContainer extends Component {
   }
 
   toggleShowAll() {
-    this.setState(({showAllAuthors}) => ({ showAllAuthors: !showAllAuthors }));
+    this.setState(({ showAllAuthors }) => ({
+      showAllAuthors: !showAllAuthors,
+    }));
   }
 
   render() {
@@ -21,6 +23,9 @@ class AuthorsContainer extends Component {
 
     return (
       <>
+        {authorsToShow.map((author) => (
+          <AuthorCard key={author.id} author={author} />
+        ))}
         {authors.length > 3 && (
           <ShowAuthorsBtn
             authors_count={authors.length}
@@ -28,9 +33,6 @@ class AuthorsContainer extends Component {
             toggleShowAll={this.toggleShowAll}
           />
         )}
-        {authorsToShow.map((author) => (
-          <AuthorCard key={author.id} author={author} />
-        ))}
       </>
     );
   }

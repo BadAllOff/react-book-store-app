@@ -8,7 +8,7 @@ const HeaderNavigation = (props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <Navbar bg={theme.bg} variant={theme.variant} expand="lg">
+    <Navbar bg={theme.body} variant={theme.variant} expand="lg">
       <Navbar.Brand as={Link} to="/">
         <img
           className="d-inline-block align-top"

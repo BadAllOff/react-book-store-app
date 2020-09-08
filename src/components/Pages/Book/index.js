@@ -1,14 +1,11 @@
 import React from "react";
-// import BookCard from "../../Book/Card/BookCard";
 import ScrollButton from "../../helpers/ScrollButton";
 import Layout from "../../Layout";
 import BookCard from "../../Book/Card/BookCard";
-// import withBook from '../../HOC/withBook';
 
 const Book = ({ match: { params } }) => {
   return (
     <Layout>
-      <h1>Book id: {params.id}</h1>
       <BookCard />
       <ScrollButton
         scrollStepInPx="50"

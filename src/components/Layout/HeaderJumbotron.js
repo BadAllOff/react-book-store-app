@@ -3,7 +3,7 @@ import { Container, Jumbotron } from "react-bootstrap";
 import styled from "styled-components";
 
 const StyledJumbotron = styled(Jumbotron)`
-  background: ${({ theme }) => theme.jumbotronBg};
+  background: transparent;
   color: ${({ theme }) => theme.text};
 `;
 

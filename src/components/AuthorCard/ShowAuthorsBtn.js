@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 
 const ShowAuthorsBtn = ({ authors_count, showAllAuthors, toggleShowAll }) => {
   return (
-    <Card border="secondary">
+    <Card>
       <Card.Body>
         <Button block onClick={toggleShowAll}>
           {showAllAuthors
