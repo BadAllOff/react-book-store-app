@@ -10,6 +10,7 @@ import {
   Col,
 } from "react-bootstrap";
 import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
+import AuthorCommission from "../../Book/Card/AuthorCommission";
 import { withRouter } from "react-router";
 import withBook from "../../HOC/withBook";
 import withLoader from "../../HOC/withLoader";
@@ -127,6 +128,7 @@ class BookCard extends Component {
               lg={{ span: 3 }}
               xl={{ span: 3 }}
             >
+              <AuthorCommission book={this.props.book} />
               <AuthorsContainer authors={authorList} />
             </Col>
           </Row>
