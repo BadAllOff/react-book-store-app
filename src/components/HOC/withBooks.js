@@ -23,6 +23,8 @@ const withBooks = (EnhancedComponent) =>
     }
 
     componentDidMount() {
+      console.log(this.state);
+
       this._fetchData();
     }
 
@@ -33,6 +35,7 @@ const withBooks = (EnhancedComponent) =>
     }
 
     _fetchData() {
+      console.log(this.state);
       httpClient
         .get("/books", {
           maxRecords: 3,
@@ -41,6 +44,8 @@ const withBooks = (EnhancedComponent) =>
         .then((result) => result.data)
         .then(this._mapFromAirtable.bind(this))
         .then((books) => {
+          console.log(this.state);
+
           this.setState({
             books,
           });

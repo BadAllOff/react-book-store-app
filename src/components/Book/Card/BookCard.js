@@ -3,6 +3,7 @@ import Row from "./Row";
 import { Badge, Card } from "react-bootstrap";
 // import { withRouter } from "react-router";
 import withBook from "../../HOC/withBook";
+import withLoader from "../../HOC/withLoader";
 
 class BookCard extends Component {
   render() {
@@ -54,4 +55,4 @@ class BookCard extends Component {
   }
 }
 
-export default withBook(BookCard);
+export default withBook(withLoader(BookCard));
