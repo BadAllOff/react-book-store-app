@@ -17,13 +17,15 @@ const withBook = (EnhancedComponent) =>
     constructor(props) {
       super(props);
 
+      const id = props.match.params.id;
+
       this.state = {
         books: null,
       };
     }
 
     componentDidMount() {
-      this._fetchData();
+      this._fetchData(this.props.match.params.id);
     }
 
     render() {
@@ -31,9 +33,9 @@ const withBook = (EnhancedComponent) =>
       return(<EnhancedComponent isLoading={!books} book={books} />);
     }
 
-    _fetchData() {
+    _fetchData(id) {
       httpClient
-        .get(`/books/recR32YW9A9Ov73EW`)
+        .get(`/books/${id}`)
         .then((result) => result.data)
         .then(this._mapFromAirtable.bind(this))
         .then((books) => {

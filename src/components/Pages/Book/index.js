@@ -3,6 +3,7 @@ import React from "react";
 import ScrollButton from "../../helpers/ScrollButton";
 import Layout from "../../Layout";
 import BookCard from "../../Book/Card/BookCard";
+// import withBook from '../../HOC/withBook';
 
 const Book = ({ match: { params } }) => {
   return (

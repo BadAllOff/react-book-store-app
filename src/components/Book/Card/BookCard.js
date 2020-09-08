@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import { Badge, Card } from "react-bootstrap";
-// import { withRouter } from "react-router";
+import { withRouter } from "react-router";
 import withBook from "../../HOC/withBook";
 import withLoader from "../../HOC/withLoader";
 
@@ -55,4 +55,4 @@ class BookCard extends Component {
   }
 }
 
-export default withBook(withLoader(BookCard));
+export default withRouter(withBook(withLoader(BookCard)));
