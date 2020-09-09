@@ -19,13 +19,6 @@ class ShortBookCard extends React.Component {
         coverImage,
         title,
         subscribersCount,
-        pageCount,
-        language,
-        progress,
-        mainPrice,
-        minPrice,
-        totalSum,
-        expectedSum,
       },
     } = this.props;
     const authorNames = authorList.map((author) => author.name).join(", ");

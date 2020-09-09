@@ -17,6 +17,8 @@ import { useHistory } from "react-router-dom";
 import withBook from "../../HOC/withBook";
 import withLoader from "../../HOC/withLoader";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
+
 
 const StyledJumbotron = styled(Jumbotron)`
   -webkit-filter: blur(8px);
@@ -56,6 +58,9 @@ class BookCard extends Component {
 
     return (
       <>
+        <Helmet>
+          <title>Book - {title}</title>
+        </Helmet>
         <StyledJumbotron
           style={{ backgroundImage: `url(${coverImage})` }}
         ></StyledJumbotron>

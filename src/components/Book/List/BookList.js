@@ -4,10 +4,14 @@ import withBooks from "../../HOC/withBooks";
 import withLoader from "../../HOC/withLoader";
 import { Container, CardColumns } from "react-bootstrap";
 import HeaderJumbotron from "../../Layout/HeaderJumbotron";
+import { Helmet } from "react-helmet";
 
 const BookList = ({ books }) => {
   return (
     <>
+      <Helmet>
+        <title>Books</title>
+      </Helmet>
       <HeaderJumbotron />
       <Container style={{ marginTop: "30px" }}>
         <CardColumns>
