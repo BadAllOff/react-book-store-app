@@ -8,10 +8,12 @@ import {
   Image,
   Row,
   Col,
+  Button,
 } from "react-bootstrap";
 import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
 import AuthorCommission from "../../Book/Card/AuthorCommission";
 import { withRouter } from "react-router";
+import { useHistory } from "react-router-dom";
 import withBook from "../../HOC/withBook";
 import withLoader from "../../HOC/withLoader";
 import styled from "styled-components";
@@ -119,6 +121,7 @@ class BookCard extends Component {
                   </CardRow>
                 </Card.Body>
               </Card>
+              <BackButton />
             </Col>
             <Col
               className="justify-content-center"
@@ -139,3 +142,16 @@ class BookCard extends Component {
 }
 
 export default withRouter(withBook(withLoader(BookCard)));
+
+const BackButton = () => {
+  const history = useHistory();
+
+  const goBack = () => {
+    if (history.action === "PUSH") {
+      history.goBack();
+    } else {
+      history.push("/");
+    }
+  };
+  return <Button onClick={goBack}>Back</Button>;
+};

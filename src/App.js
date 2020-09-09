@@ -5,7 +5,7 @@ import "./styles/styles.css";
 import Main from "./components/Pages/Main";
 import Book from "./components/Pages/Book";
 import NotFound from "./components/Pages/NotFound";
-
+import {bookPath} from "./components/helpers/routes";
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route component={Main} path="/" exact />
-          <Route component={Book} path="/book/:id" strict exact />
+          <Route component={Book} path={bookPath()} strict exact />
           <Route component={NotFound} />
         </Switch>
       </Router>

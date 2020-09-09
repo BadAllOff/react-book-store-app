@@ -2,6 +2,7 @@ import React from "react";
 import { Badge, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {bookPath} from "../../helpers/routes";
 
 const StyledCardFooter = styled(Card.Footer)`
   background: ${({ theme }) => theme.body};
@@ -37,7 +38,7 @@ class ShortBookCard extends React.Component {
               Bestseller
             </Badge>
           ) : null}{" "}
-          <Card.Title as={Link} to={`/book/${id}`} className="text-uppercase">
+          <Card.Title as={Link} to={bookPath(id)} className="text-uppercase">
             {title}
           </Card.Title>
           <p>{description}</p>
