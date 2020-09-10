@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import UserInfo from "./UserInfo";
-import { Button, Navbar } from "react-bootstrap";
+import { Button, Navbar, Nav } from "react-bootstrap";
 import { ThemeContext } from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,9 @@ const HeaderNavigation = (props) => {
         />{" "}
         Amazon Book Store
       </Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link  as={Link} to="/wishlist">Home</Nav.Link>
+      </Nav>
       <Button variant={theme.btn.variant} onClick={props.toggleTheme}>
         Toggle theme
       </Button>
