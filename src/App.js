@@ -1,26 +1,22 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./styles/styles.css";
-import BookList from "./components/Book/List/BookList";
-import ScrollButton from "./components/helpers/ScrollButton";
-import Layout from "./components/Layout";
-// import SimilarBooksList from "./components/SimilarBooks/SimilarBooksList";
-
+import Main from "./components/Pages/Main";
+import Book from "./components/Pages/Book";
+import NotFound from "./components/Pages/NotFound";
+import {bookPath} from "./components/helpers/routes";
 
 class App extends Component {
   render() {
-    const { books } = this.props;
     return (
-      <Layout>
-        {/* <SimilarBooksList similarBooks={this.props.similarBooks} /> */}
-        <BookList books={books} isLoading={!books} />
-        <ScrollButton
-          scrollStepInPx="50"
-          delayInMs="16.66"
-          ShowAtPosition={window.innerHeight / 3}
-          TransitionClassName="visible"
-        />
-      </Layout>
+      <Router>
+        <Switch>
+          <Route component={Main} path="/" exact />
+          <Route component={Book} path={bookPath()} strict exact />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     );
   }
 }

@@ -10,6 +10,7 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
+    historyApiFallback: true,
   },
   output: { filename: "[name].js" },
   module: {
@@ -25,6 +26,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      base: '/',
     }),
     new FaviconsWebpackPlugin({
       logo: "./src/static/favicon.svg",

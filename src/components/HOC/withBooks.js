@@ -49,7 +49,7 @@ const withBooks = (EnhancedComponent) =>
 
     _mapFromAirtable({ records }) {
       return records.map((record) => ({
-        id: record.fields.id,
+        id: record.id,
         title: record.fields.title,
         description: record.fields.description,
         pageCount: record.fields.page_count,

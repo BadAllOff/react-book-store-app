@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import UserInfo from "./UserInfo";
-import { Container, Navbar, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import HeaderNavigation from "./HeaderNavigation";
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../styles/theme";
 import { GlobalStyles } from "../../styles/global";
 import "bootswatch/dist/darkly/bootstrap.min.css";
 
-
-
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const toggleTheme = () => {
     // if the theme is not light, then set it to dark
     if (theme === "light") {
@@ -25,28 +23,9 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
       <header>
-        <Navbar bg={theme === "light" ? "dark" : "light"} expand="lg">
-          <Navbar.Brand href="#">
-            <img
-              className="d-inline-block align-top"
-              width="30"
-              height="30"
-              src="https://www.pinclipart.com/picdir/big/345-3450811_free-png-download-helping-hands-png-images-background.png"
-            />{" "}
-            Amazon Book Store
-          </Navbar.Brand>
-          <Button
-            variant={theme === "light" ? "light" : "dark"}
-            onClick={toggleTheme}
-          >
-            Toggle theme
-          </Button>
-          <Navbar.Collapse>
-            <UserInfo />
-          </Navbar.Collapse>
-        </Navbar>
+        <HeaderNavigation toggleTheme={toggleTheme} />
       </header>
-      <Container style={{ marginTop: "30px" }}>{children}</Container>
+      {children}
       <footer>
         <Container>
           <p>&copy; {new Date().getFullYear()}, Amazon Books</p>
