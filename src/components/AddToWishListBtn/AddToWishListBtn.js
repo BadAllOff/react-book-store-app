@@ -4,24 +4,40 @@ import { Button } from "react-bootstrap";
 class AddToWishListBtn extends React.Component {
   constructor(props) {
     super(props);
-    this.addBook = this.addBook.bind(this);
+    this.toggleBook = this.toggleBook.bind(this);
+    this.bookIsInList = this.bookIsInList.bind(this);
+
+    this.state = {
+      favoriteBooks: JSON.parse(localStorage.getItem("favoriteBooks")) || {},
+    };
   }
 
-  addBook(book) {
+  toggleBook(book) {
     let favoriteBooks = JSON.parse(localStorage.getItem("favoriteBooks")) || {};
-
-    favoriteBooks = Object.assign(favoriteBooks, { [book.id]: book.title });
+    if (favoriteBooks[book.id]) {
+      delete favoriteBooks[book.id];
+    } else {
+      favoriteBooks = Object.assign(favoriteBooks, { [book.id]: book.title });
+    }
     localStorage.setItem("favoriteBooks", JSON.stringify(favoriteBooks));
-    console.log(favoriteBooks);
 
+    this.setState(() => ({
+      favoriteBooks: JSON.parse(localStorage.getItem("favoriteBooks")) || {},
+    }));
+
+    console.log(favoriteBooks);
   }
 
-  getBookFromLS(book) {}
+  bookIsInList(book) {
+    return this.state.favoriteBooks[book.id] ? true : false;
+  }
 
   render() {
+    const { book } = this.props;
+    console.log(this.bookIsInList(book));
     return (
-      <Button className="my-1" onClick={() => this.addBook(this.props.book)}>
-        Add to wish list
+      <Button className="my-1" onClick={() => this.toggleBook(book)}>
+        {this.bookIsInList(book) ? "Remove" : "Add to wish list"}
       </Button>
     );
   }
