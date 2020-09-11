@@ -27,8 +27,6 @@ class AddToWishListBtn extends React.Component {
     this.setState(() => ({
       favoriteBooks: JSON.parse(localStorage.getItem("favoriteBooks")) || {},
     }));
-
-    console.log(favoriteBooks);
   }
 
   bookIsInList(book) {
@@ -37,7 +35,6 @@ class AddToWishListBtn extends React.Component {
 
   render() {
     const { book } = this.props;
-    console.log(this.bookIsInList(book));
     return (
       <OverlayTrigger
         key={"top"}
