@@ -12,10 +12,10 @@ const WishList = () => {
   for (const [key, value] of Object.entries(favoriteBooks)) {
     books.push(
       <li key={key}>
+        <AddToWishListBtn book={{ id: key, title: value }} />{" "}
         <Link to={bookPath(key)} className="text-uppercase">
           {value}
         </Link>
-        <AddToWishListBtn book={{ id: key, title: value }} />
       </li>
     );
   }

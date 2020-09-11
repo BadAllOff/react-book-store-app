@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart as EmptyHart } from '@fortawesome/free-solid-svg-icons'
-import { faHeart as FullHeart } from '@fortawesome/free-regular-svg-icons'
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as FullHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as EmptyHart } from "@fortawesome/free-regular-svg-icons";
 
 class AddToWishListBtn extends React.Component {
   constructor(props) {
@@ -39,9 +39,29 @@ class AddToWishListBtn extends React.Component {
     const { book } = this.props;
     console.log(this.bookIsInList(book));
     return (
-      <Button className="my-1" onClick={() => this.toggleBook(book)}>
-        {this.bookIsInList(book) ? <FontAwesomeIcon icon={EmptyHart} /> : <FontAwesomeIcon icon={FullHeart} />}
-      </Button>
+      <OverlayTrigger
+        key={"top"}
+        placement={"top"}
+        overlay={
+          <Tooltip id={`tooltip-top`}>
+            {this.bookIsInList(book)
+              ? "Remove from wish list"
+              : "Add to wish list"}
+          </Tooltip>
+        }
+      >
+        <Button
+          className="my-1"
+          size="sm"
+          onClick={() => this.toggleBook(book)}
+        >
+          {this.bookIsInList(book) ? (
+            <FontAwesomeIcon icon={FullHeart} />
+          ) : (
+            <FontAwesomeIcon icon={EmptyHart} />
+          )}
+        </Button>
+      </OverlayTrigger>
     );
   }
 }
