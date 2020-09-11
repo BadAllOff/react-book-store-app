@@ -18,12 +18,14 @@ const HeaderNavigation = (props) => {
         />{" "}
         Amazon Book Store
       </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link  as={Link} to="/wishlist">Wish List</Nav.Link>
-      </Nav>
       <Button variant={theme.btn.variant} onClick={props.toggleTheme}>
         Toggle theme
       </Button>
+      <Nav className="mr-auto">
+        <Nav.Link as={Link} to="/wishlist">
+          Wish List
+        </Nav.Link>
+      </Nav>
       <Navbar.Collapse>
         <UserInfo />
       </Navbar.Collapse>
