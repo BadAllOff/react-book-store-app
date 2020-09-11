@@ -5,7 +5,7 @@ import Layout from "../../Layout";
 const WishList = () => {
   return (
     <Layout>
-      <h1>Wish List</h1>
+      <h1>Wish Listwith Local Storage!</h1>
       <ScrollButton
         scrollStepInPx="50"
         delayInMs="16.66"

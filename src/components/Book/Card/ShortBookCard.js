@@ -2,7 +2,8 @@ import React from "react";
 import { Badge, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {bookPath} from "../../helpers/routes";
+import { bookPath } from "../../helpers/routes";
+import AddToWishListBtn from "../../AddToWishListBtn/AddToWishListBtn";
 
 const StyledCardFooter = styled(Card.Footer)`
   background: ${({ theme }) => theme.body};
@@ -35,6 +36,7 @@ class ShortBookCard extends React.Component {
             {title}
           </Card.Title>
           <p>{description}</p>
+          <AddToWishListBtn book={this.props.book}></AddToWishListBtn>
         </Card.Body>
         <StyledCardFooter>
           {authorList.length === 0 ? (
