@@ -5,11 +5,10 @@ import AddToWishListBtn from "../../AddToWishListBtn/AddToWishListBtn";
 import { Link } from "react-router-dom";
 import { bookPath } from "../../helpers/routes";
 import { Container } from "react-bootstrap";
-import {WishListContext} from "../../meta/WishlistProvider";
+import { WishListContext } from "../../meta/WishlistProvider";
 
 const WishList = () => {
-  const favoriteBooks = useContext(WishListContext);
-  console.log(favoriteBooks);
+  const { favoriteBooks } = useContext(WishListContext);
   const books = [];
   for (const [key, value] of Object.entries(favoriteBooks)) {
     books.push(
@@ -24,16 +23,16 @@ const WishList = () => {
 
   return (
     <Layout>
-        <Container>
-          <h1>My wish list</h1>
-          <ul>{books}</ul>
-        </Container>
-        <ScrollButton
-          scrollStepInPx="50"
-          delayInMs="16.66"
-          ShowAtPosition={window.innerHeight / 3}
-          TransitionClassName="visible"
-        />
+      <Container>
+        <h1>My wish list</h1>
+        <ul>{books}</ul>
+      </Container>
+      <ScrollButton
+        scrollStepInPx="50"
+        delayInMs="16.66"
+        ShowAtPosition={window.innerHeight / 3}
+        TransitionClassName="visible"
+      />
     </Layout>
   );
 };

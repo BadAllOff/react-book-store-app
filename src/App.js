@@ -5,7 +5,7 @@ import "./styles/styles.css";
 import Main from "./components/Pages/Main";
 import Book from "./components/Pages/Book";
 import NotFound from "./components/Pages/NotFound";
-import {bookPath} from "./components/helpers/routes";
+import { bookPath } from "./components/helpers/routes";
 import WishList from "./components/Pages/WishList";
 
 class App extends Component {
