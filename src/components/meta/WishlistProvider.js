@@ -15,7 +15,7 @@ class WishListProvider extends React.Component {
   }
 
   bookIsInList(book) {
-    return this.state.favoriteBooks[book.id] ? true : false;
+    return !!this.state.favoriteBooks[book.id];
   }
 
   toggleBook(book) {
