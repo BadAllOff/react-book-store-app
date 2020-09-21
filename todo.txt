@@ -1,0 +1,2 @@
+form to add author + optional image upload
+cover image upload for book
