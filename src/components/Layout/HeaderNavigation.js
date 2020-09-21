@@ -3,6 +3,7 @@ import UserInfo from "./UserInfo";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { ThemeContext } from "styled-components";
 import { Link } from "react-router-dom";
+import { newBookPath } from "../helpers/routes";
 
 const HeaderNavigation = (props) => {
   const theme = useContext(ThemeContext);
@@ -24,6 +25,9 @@ const HeaderNavigation = (props) => {
       <Nav className="mr-auto">
         <Nav.Link as={Link} to="/wishlist">
           Wish List
+        </Nav.Link>
+        <Nav.Link as={Link} to={newBookPath()}>
+          Add Book
         </Nav.Link>
       </Nav>
       <Navbar.Collapse>
