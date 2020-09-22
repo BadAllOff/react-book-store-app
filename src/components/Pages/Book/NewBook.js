@@ -2,7 +2,35 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Layout from "../../Layout";
 import { Formik } from "formik";
+import * as Yup from "yup";
 import { withAuthors, withLoader } from "../../HOC";
+
+const NewBookSchema = Yup.object().shape({
+  book_cover: Yup.string().required("Required"),
+  title: Yup.string().required("Required"),
+  description: Yup.string().required("Required"),
+  pages_count: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  language: Yup.string().required("Required"),
+  progress: Yup.number().required("Required").positive("Should be more than 0"),
+  min_price: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  main_price: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  total_sum: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  expected_sum: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  subscribers_count: Yup.number()
+    .required("Required")
+    .positive("Should be more than 0"),
+  authors: Yup.array().of(Yup.string().required("Required")),
+});
 
 const NewBook = ({ authors }) => {
   const [validated, setValidated] = useState(false);
@@ -13,43 +41,20 @@ const NewBook = ({ authors }) => {
         <h1>Add book:</h1>
         <Formik
           initialValues={{
-            book_cover: "",
-            title: "Book title",
+            book_cover: '',
+            title: "",
             description: "Write short description for the book",
-            pages_count: "",
+            pages_count: "200",
             language: "esperanto",
-            progress: "",
-            min_price: "",
-            main_price: "",
-            total_sum: "",
-            expected_sum: "",
-            subscribers_count: "",
+            progress: "10",
+            min_price: "19.99",
+            main_price: "12.21",
+            total_sum: "1000",
+            expected_sum: "12.21",
+            subscribers_count: "100",
             authors: [],
           }}
-          validate={(values) => {
-            const errors = {};
-            [
-              "book_cover",
-              "title",
-              "description",
-              "pages_count",
-              "language",
-              "progress",
-              "min_price",
-              "main_price",
-              "total_sum",
-              "expected_sum",
-              "subscribers_count",
-              "authors",
-            ].map((variant) => {
-              if (!values[`${variant}`]) {
-                errors[variant] = "Required";
-              }
-            });
-
-            errors && setValidated(true);
-            return errors;
-          }}
+          validationSchema={NewBookSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
@@ -66,8 +71,10 @@ const NewBook = ({ authors }) => {
             handleBlur,
             handleSubmit,
             isSubmitting,
+            isValid,
           }) => (
-            <Form validated={validated} onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+              {console.log(isValid)}
               <Form.Group as={Row}>
                 <Form.Label column sm="2">
                   Book cover
@@ -78,13 +85,13 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.book_cover}
-                    required
                     sm="10"
+                    isValid={touched.book_cover && !errors.book_cover}
+                    isInvalid={touched.book_cover && !!errors.book_cover}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.book_cover &&
-                      touched.book_cover &&
-                      errors.book_cover}
+                    {errors.book_cover}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -102,11 +109,14 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.title}
-                    required
+                    className={touched.name && errors.name ? "error" : null}
+                    isInvalid={touched.title && !!errors.title}
+                    isValid={touched.title && !errors.title}
                   />
 
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.title && touched.title && errors.title}
+                    {errors.title}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -126,12 +136,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.description}
-                    required
+                    isInvalid={touched.description && !!errors.description}
+                    isValid={touched.description && !errors.description}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.description &&
-                      touched.description &&
-                      errors.description}
+                    {errors.description}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -149,12 +159,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.pages_count}
-                    required
+                    isInvalid={touched.pages_count && !!errors.pages_count}
+                    isValid={touched.pages_count && !errors.pages_count}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.pages_count &&
-                      touched.pages_count &&
-                      errors.pages_count}
+                    {errors.pages_count}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -173,15 +183,17 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.language}
-                    required
+                    isInvalid={touched.language && !!errors.language}
+                    isValid={touched.language && !errors.language}
                   >
                     <option value="english">English</option>
                     <option value="russian">Russian</option>
                     <option value="Latin">Latin</option>
                     <option value="esperanto">Esperanto</option>
                   </Form.Control>
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.language && touched.language && errors.language}
+                    {errors.language}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -199,10 +211,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.progress}
-                    required
+                    isInvalid={touched.progress && !!errors.progress}
+                    isValid={touched.progress && !errors.progress}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.progress && touched.progress && errors.progress}
+                    {errors.progress}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -220,10 +234,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.min_price}
-                    required
+                    isInvalid={touched.min_price && !!errors.min_price}
+                    isValid={touched.min_price && !errors.min_price}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.min_price && touched.min_price && errors.min_price}
+                    {errors.min_price}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -241,12 +257,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.main_price}
-                    required
+                    isInvalid={touched.main_price && !!errors.main_price}
+                    isValid={touched.main_price && !errors.main_price}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.main_price &&
-                      touched.main_price &&
-                      errors.main_price}
+                    {errors.main_price}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -264,10 +280,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.total_sum}
-                    required
+                    isInvalid={touched.total_sum && !!errors.total_sum}
+                    isValid={touched.total_sum && !errors.total_sum}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.total_sum && touched.total_sum && errors.total_sum}
+                    {errors.total_sum}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -285,12 +303,12 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.expected_sum}
-                    required
+                    isInvalid={touched.expected_sum && !!errors.expected_sum}
+                    isValid={touched.expected_sum && !errors.expected_sum}
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.expected_sum &&
-                      touched.expected_sum &&
-                      errors.expected_sum}
+                    {errors.expected_sum}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -308,12 +326,16 @@ const NewBook = ({ authors }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.subscribers_count}
-                    required
+                    isInvalid={
+                      touched.subscribers_count && !!errors.subscribers_count
+                    }
+                    isValid={
+                      touched.subscribers_count && !errors.subscribers_count
+                    }
                   />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.subscribers_count &&
-                      touched.subscribers_count &&
-                      errors.subscribers_count}
+                    {errors.subscribers_count}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
@@ -333,8 +355,10 @@ const NewBook = ({ authors }) => {
                     onBlur={handleBlur}
                     value={values.authors}
                     multiple
-                    required
+                    isInvalid={touched.authors && !!errors.authors}
+                    isValid={touched.authors && !errors.authors}
                   >
+                    <option disabled> -- select an option -- </option>
                     {authors.map((author) => {
                       return (
                         <option key={author.id} value={author.id}>
@@ -343,8 +367,9 @@ const NewBook = ({ authors }) => {
                       );
                     })}
                   </Form.Control>
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
-                    {errors.authors && touched.authors && errors.authors}
+                    {errors.authors}
                   </Form.Control.Feedback>
                 </Col>
               </Form.Group>
