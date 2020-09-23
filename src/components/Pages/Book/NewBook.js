@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Layout from "../../Layout";
 import { Formik } from "formik";
@@ -9,37 +9,38 @@ import { useHistory } from "react-router-dom";
 import { bookPath } from "../../helpers/routes";
 
 const NewBookSchema = Yup.object().shape({
+  cover_image_mock: Yup.string().required("Required"),
   cover_image: Yup.string().required("Required"),
   title: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
   page_count: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .integer("Must be an integer")
     .required("Required")
     .moreThan(0, "Should be more than 0"),
   language: Yup.string().required("Required"),
   progress: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   min_price: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   main_price: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   total_sum: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   expected_sum: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   subscribers_count: Yup.number()
-    .typeError("must be a number")
+    .typeError("Must be a number")
     .integer("Must be an integer")
     .required("Required")
     .positive("Should be more than 0"),
@@ -55,8 +56,8 @@ const NewBook = ({ authors }) => {
         <h1>Add book:</h1>
         <Formik
           initialValues={{
-            cover_image:
-              "https://www.bookcoversclub.com/wp-content/uploads/2018/02/book-cover-352.jpg",
+            cover_image_mock: "",
+            cover_image: "",
             title: "Awesome title for bestseller!",
             description: "Write short description for the book",
             page_count: "200",
@@ -70,9 +71,25 @@ const NewBook = ({ authors }) => {
             authors: [],
           }}
           validationSchema={NewBookSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            const data = formatData(values);
-            console.log(JSON.stringify(data, null, 2));
+          onSubmit={async (values) => {
+            const image = new FormData();
+            image.append("file", values.cover_image);
+            image.append("upload_preset", "reactuploads");
+            const res = await fetch(
+              "https://api.cloudinary.com/v1_1/react-test-app/image/upload",
+              {
+                method: "post",
+                body: image,
+              }
+            );
+
+            const imgUrl = await res.json().then((img, values) => {
+              return img.secure_url;
+            });
+
+            values.cover_image = imgUrl;
+            let data = formatData(values);
+
             return createBook(data).then((res) => {
               const bookId = res.records[0].id;
               const redirectUri = bookPath(bookId);
@@ -88,51 +105,36 @@ const NewBook = ({ authors }) => {
             handleBlur,
             handleSubmit,
             isSubmitting,
+            setFieldValue,
           }) => (
             <Form onSubmit={handleSubmit}>
-              {/* <Form.Group as={Row}>
-                <Form.Label column sm="2">
-                  Book cover
-                </Form.Label>
-                <Col sm="10">
-                  <Form.File
-                    name="cover_image"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.cover_image}
-                    sm="10"
-                    isValid={touched.cover_image && !errors.cover_image}
-                    isInvalid={touched.cover_image && !!errors.cover_image}
-                    feedback={errors.cover_image}
-                  />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.cover_image}
-                  </Form.Control.Feedback>
-                </Col>
-              </Form.Group> */}
-
               <Form.Group as={Row}>
                 <Form.Label column sm="2">
                   Book cover
                 </Form.Label>
                 <Col sm="10">
-                  <Form.Control
-                    sm="10"
-                    size="sm"
-                    type="text"
-                    name="cover_image"
-                    onChange={handleChange}
+                  <Form.File
+                    name="cover_image_mock"
+                    onChange={(e) => {
+                      handleChange(e);
+                      // тут я специально передаю File в скрытую форму что бы без труда и мороки
+                      // получать данные которые Формик мне выдать не может в параметре values
+                      setFieldValue("cover_image", e.currentTarget.files[0]);
+                    }}
                     onBlur={handleBlur}
-                    value={values.cover_image}
-                    isInvalid={touched.cover_image && !!errors.cover_image}
-                    isValid={touched.cover_image && !errors.cover_image}
+                    value={values.cover_image_mock}
+                    sm="10"
+                    // проверять тригеры будем видимого поле, так как 
+                    // только с ним может взаимодействовать юзер
+                    isValid={touched.cover_image_mock && !errors.cover_image_mock}
+                    isInvalid={touched.cover_image_mock && !!errors.cover_image_mock}
+                    // а ошибку показывать будем от настоящего поля
+                    feedback={errors.cover_image}
                   />
-
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.title}
-                  </Form.Control.Feedback>
+                  {/* Так как Формик не работает с Файл формами я добавил скрытое поле
+                  что бы визуально работала валидация для пользователя
+                  и на событие onChange и onBlure показывался результат. */}
+                  <Form.File className="invisible" name="cover_image" />
                 </Col>
               </Form.Group>
 
