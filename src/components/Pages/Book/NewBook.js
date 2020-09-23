@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Layout from "../../Layout";
 import { Formik } from "formik";
@@ -10,38 +10,48 @@ const NewBookSchema = Yup.object().shape({
   title: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
   pages_count: Yup.number()
+    .typeError("must be a number")
+    .integer("Must be an integer")
+    .required("Required")
+    .moreThan(0, "Should be more than 0"),
+  language: Yup.string().required("Required"),
+  progress: Yup.number()
+    .typeError("must be a number")
     .required("Required")
     .positive("Should be more than 0"),
-  language: Yup.string().required("Required"),
-  progress: Yup.number().required("Required").positive("Should be more than 0"),
   min_price: Yup.number()
+    .typeError("must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   main_price: Yup.number()
+    .typeError("must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   total_sum: Yup.number()
+    .typeError("must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   expected_sum: Yup.number()
+    .typeError("must be a number")
     .required("Required")
     .positive("Should be more than 0"),
   subscribers_count: Yup.number()
+    .typeError("must be a number")
+    .integer("Must be an integer")
     .required("Required")
     .positive("Should be more than 0"),
-  authors: Yup.array().of(Yup.string().required("Required")),
+  // авторы всё еще не обязательны?
+  authors: Yup.array(),
 });
 
 const NewBook = ({ authors }) => {
-  const [validated, setValidated] = useState(false);
-
   return (
     <Layout>
       <Container>
         <h1>Add book:</h1>
         <Formik
           initialValues={{
-            book_cover: '',
+            book_cover: "",
             title: "",
             description: "Write short description for the book",
             pages_count: "200",
@@ -71,10 +81,8 @@ const NewBook = ({ authors }) => {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            isValid,
           }) => (
             <Form onSubmit={handleSubmit}>
-              {console.log(isValid)}
               <Form.Group as={Row}>
                 <Form.Label column sm="2">
                   Book cover
@@ -88,6 +96,7 @@ const NewBook = ({ authors }) => {
                     sm="10"
                     isValid={touched.book_cover && !errors.book_cover}
                     isInvalid={touched.book_cover && !!errors.book_cover}
+                    feedback={errors.book_cover}
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
