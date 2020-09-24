@@ -24,6 +24,7 @@
     "favicons-webpack-plugin": "^4.2.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.1.0",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.10.0",
