@@ -28,7 +28,7 @@ const withAuthors = (EnhancedComponent) =>
     render() {
       const { authors } = this.state;
 
-      return <EnhancedComponent isLoading={!authors} authors={authors} />;
+      return <EnhancedComponent isLoading={!authors} authors={authors} {...this.props} />;
     }
 
     _fetchData() {
