@@ -76,18 +76,18 @@ const BookForm = ({ authors = [], initialValues = {} }) => {
   return (
     <Formik
       initialValues={{
-        cover_image: initialValues.cover_image,
-        title: initialValues.title,
-        description: initialValues.description,
-        page_count: initialValues.page_count,
-        language: initialValues.language,
-        progress: initialValues.progress,
-        min_price: initialValues.min_price,
-        main_price: initialValues.main_price,
-        total_sum: initialValues.total_sum,
-        expected_sum: initialValues.expected_sum,
-        subscribers_count: initialValues.subscribers_count,
-        authors: initialValues.authors,
+        cover_image: initialValues.cover_image || "",
+        title: initialValues.title || "",
+        description: initialValues.description || "",
+        page_count: initialValues.page_count || "",
+        language: initialValues.language || "",
+        progress: initialValues.progress || "",
+        min_price: initialValues.min_price || "",
+        main_price: initialValues.main_price || "",
+        total_sum: initialValues.total_sum || "",
+        expected_sum: initialValues.expected_sum || "",
+        subscribers_count: initialValues.subscribers_count || "",
+        authors: initialValues.authors || [],
       }}
       validationSchema={NewBookSchema}
       onSubmit={async (values) => {

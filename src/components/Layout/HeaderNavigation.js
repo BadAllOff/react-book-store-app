@@ -19,7 +19,7 @@ const HeaderNavigation = (props) => {
         />{" "}
         Amazon Book Store
       </Navbar.Brand>
-      <Button variant={theme.btn.variant} onClick={props.toggleTheme}>
+      <Button onClick={props.toggleTheme}>
         Toggle theme
       </Button>
       <Nav className="mr-auto">

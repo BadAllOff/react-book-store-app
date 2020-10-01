@@ -18,3 +18,11 @@ export function createBook(params) {
     })
     .then((result) => result.data);
 }
+
+export function createAuthor(params) {
+  return httpClient
+    .post("/authors", {
+      records: [params],
+    })
+    .then((result) => result.data);
+}
