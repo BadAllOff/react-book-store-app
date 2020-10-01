@@ -3,7 +3,7 @@ import UserInfo from "./UserInfo";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { ThemeContext } from "styled-components";
 import { Link } from "react-router-dom";
-import { newBookPath } from "../helpers/routes";
+import { newBookPath, newAuthorPath } from "../helpers/routes";
 
 const HeaderNavigation = (props) => {
   const theme = useContext(ThemeContext);
@@ -28,6 +28,9 @@ const HeaderNavigation = (props) => {
         </Nav.Link>
         <Nav.Link as={Link} to={newBookPath()}>
           Add Book
+        </Nav.Link>
+        <Nav.Link as={Link} to={newAuthorPath()}>
+          Add Author
         </Nav.Link>
       </Nav>
       <Navbar.Collapse>
