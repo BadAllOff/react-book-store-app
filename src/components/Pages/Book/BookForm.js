@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { bookPath } from "../../helpers/routes";
 import Dropzone from "react-dropzone";
 
-const formatData = (values) => {
+const formatValuesToSend = (values) => {
   return {
     fields: {
       title: values.title,
@@ -94,22 +94,21 @@ const BookForm = ({ authors = [], initialValues = {} }) => {
         const image = new FormData();
         image.append("file", values.cover_image);
         image.append("upload_preset", "reactuploads");
-        const res = await fetch(
+        values.cover_image = await fetch(
           "https://api.cloudinary.com/v1_1/react-test-app/image/upload",
           {
             method: "post",
             body: image,
           }
-        );
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((img) => {
+            return img.secure_url;
+          });
 
-        const imgUrl = await res.json().then((img, values) => {
-          return img.secure_url;
-        });
-
-        values.cover_image = imgUrl;
-        let data = formatData(values);
-
-        return createBook(data).then((res) => {
+        return createBook(formatValuesToSend(values)).then((res) => {
           const bookId = res.records[0].id;
           const redirectUri = bookPath(bookId);
           history.push(redirectUri);

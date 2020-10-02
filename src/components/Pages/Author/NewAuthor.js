@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Layout from "../../Layout";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Row, Col, Badge } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { createAuthor } from "../../../lib/client";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 const NewAuthorSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -12,7 +13,7 @@ const NewAuthorSchema = Yup.object().shape({
   about: Yup.string().required("Required"),
 });
 
-const formatData = (values) => {
+const formatValuesToSend = (values) => {
   return {
     fields: {
       name: values.name,
@@ -28,6 +29,8 @@ const formatData = (values) => {
 };
 
 const NewAuthor = () => {
+  const history = useHistory();
+
   const { errors, register, handleSubmit, formState } = useForm({
     mode: "onTouched",
     resolver: yupResolver(NewAuthorSchema),
@@ -36,26 +39,30 @@ const NewAuthor = () => {
   const { touched } = formState;
 
   const onSubmit = async (values) => {
-    const image = new FormData();
-    image.append("file", values.avatar[0]);
-    image.append("upload_preset", "reactuploads");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/react-test-app/image/upload",
-      {
-        method: "post",
-        body: image,
-      }
-    );
+    if (values.avatar[0]) {
+      const image = new FormData();
+      image.append("file", values.avatar[0]);
+      image.append("upload_preset", "reactuploads");
 
-    const imgUrl = await res.json().then((img, values) => {
-      return img.secure_url;
-    });
+      values.avatar = await fetch(
+        "https://api.cloudinary.com/v1_1/react-test-app/image/upload",
+        {
+          method: "post",
+          body: image,
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((img) => {
+          return img.secure_url;
+        });
+    }
+    const data = formatValuesToSend(values);
+    !values.avatar[0] && delete data.fields.avatar;
 
-    values.avatar = imgUrl;
-
-    let data = formatData(values);
     return createAuthor(data).then((res) => {
-      console.log(res);
+      history.push("/");
     });
   };
 
@@ -70,7 +77,6 @@ const NewAuthor = () => {
             </Form.Label>
             <Col sm="10">
               <Form.File
-                className="position-relative"
                 name="avatar"
                 sm="10"
                 ref={register}
