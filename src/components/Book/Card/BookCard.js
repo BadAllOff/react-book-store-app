@@ -14,11 +14,10 @@ import AuthorsContainer from "../../AuthorCard/AuthorsContainer";
 import AuthorCommission from "../../Book/Card/AuthorCommission";
 import { withRouter } from "react-router";
 import { useHistory } from "react-router-dom";
-import withBook from "../../HOC/withBook";
-import withLoader from "../../HOC/withLoader";
+import { withBook, withLoader } from "../../HOC/";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-
+import AddToWishListBtn from "../../AddToWishListBtn/AddToWishListBtn";
 
 const StyledJumbotron = styled(Jumbotron)`
   -webkit-filter: blur(8px);
@@ -75,6 +74,7 @@ class BookCard extends Component {
               xl={{ span: 3, offset: 0 }}
             >
               <Image fluid src={coverImage} alt={title}></Image>
+              <AddToWishListBtn book={this.props.book}></AddToWishListBtn>
             </Col>
             <Col
               xs={{ span: 12 }}

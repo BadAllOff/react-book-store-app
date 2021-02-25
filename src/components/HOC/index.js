@@ -1,4 +1,6 @@
-import withLoader from './withLoader';
-import withBooks from './withBooks';
+import withLoader from "./withLoader";
+import withBook from "./withBook";
+import withBooks from "./withBooks";
+import withAuthors from "./withAuthors";
 
-export {withBooks, withLoader}
+export { withBooks, withLoader, withBook, withAuthors };

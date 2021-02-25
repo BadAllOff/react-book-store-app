@@ -4,8 +4,11 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "./styles/styles.css";
 import Main from "./components/Pages/Main";
 import Book from "./components/Pages/Book";
+import NewBook from "./components/Pages/Book/NewBook";
+import NewAuthor from "./components/Pages/Author/NewAuthor";
 import NotFound from "./components/Pages/NotFound";
-import {bookPath} from "./components/helpers/routes";
+import { bookPath, newBookPath, newAuthorPath } from "./components/helpers/routes";
+import WishList from "./components/Pages/WishList";
 
 class App extends Component {
   render() {
@@ -13,7 +16,10 @@ class App extends Component {
       <Router>
         <Switch>
           <Route component={Main} path="/" exact />
+          <Route component={NewBook} path={newBookPath()} strict exact />
           <Route component={Book} path={bookPath()} strict exact />
+          <Route component={NewAuthor} path={newAuthorPath()} strict exact />
+          <Route component={WishList} path={"/wishlist"} strict exact />
           <Route component={NotFound} />
         </Switch>
       </Router>
