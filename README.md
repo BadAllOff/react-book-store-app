@@ -1,6 +1,11 @@
 # Amazing Book Store
 
 A book preview and selling functionality.
+To install and use simply clone repo 
+
+.then `npm install`
+
+.then `npm start`
 
 Used:
 - React
@@ -14,7 +19,7 @@ Used:
 - React-Dropzone - drag&drop functionality
 - SSR
 - Jest - testing library
-- Airtable API
+- Airtable API (api key included)
 
 ![Main Page](images/mainPage.png)
 ![Book Page](images/bookPage.png)
